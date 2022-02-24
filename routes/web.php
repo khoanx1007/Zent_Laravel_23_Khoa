@@ -30,4 +30,17 @@ Route::prefix('backend')->name('backend.')->group(function(){
             return redirect()->route('backend.categories.list');
         })->name('update');
     }); 
+    Route::prefix('posts')->name('posts.')->group(function(){
+        Route::get('/list', function () {
+            return view('posts/list');
+        })->name('list');
+        Route::view('/create', 'posts/create')->name('create');
+        Route::post('/store', function () {
+            return redirect()->route('backend.posts.list');
+        })->name('store');
+        Route::view('/edit', 'posts/edit')->name('edit');
+        Route::put('/update', function () {
+            return redirect()->route('backend.posts.list');
+        })->name('update');
+    }); 
 });
