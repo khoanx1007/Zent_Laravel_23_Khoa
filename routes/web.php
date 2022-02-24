@@ -13,6 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::prefix('backend')->name('backend.')->group(function(){
+    Route::get('dashboard',function(){
+        return view('dashboard');
+    })->name('dashboard.index');  
+    Route::prefix('categories')->name('categories.')->group(function(){
+        Route::get('/list', function () {
+            return view('list');
+        })->name('list');
+        Route::view('/create', 'create')->name('create');
+        Route::post('/store', function () {
+            return redirect()->route('backend.categories.list');
+        })->name('store');
+        Route::view('/edit', 'edit')->name('edit');
+        Route::put('/update', function () {
+            return redirect()->route('backend.categories.list');
+        })->name('update');
+    }); 
 });
