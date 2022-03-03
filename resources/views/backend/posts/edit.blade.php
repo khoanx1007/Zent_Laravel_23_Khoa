@@ -12,7 +12,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên bài viết</label>
-                    <input type="name" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
+                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
                   </div>
                   <div class="form-group">
                     <label>Text Arena</label>

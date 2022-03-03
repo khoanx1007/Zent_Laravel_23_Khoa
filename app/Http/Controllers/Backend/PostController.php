@@ -35,7 +35,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect()->action([PostController::class,'index']);
+        if($request->get('title')==null){
+                return redirect()->back();
+        }
+        else
+        {
+            return redirect()->action([PostController::class,'index']);
+        }
     }
 
     /**
@@ -64,7 +70,13 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect()->action([PostController::class,'index']);
+        if($request->get('title')==null){
+                return redirect()->back();
+        }
+        else
+        {
+            return redirect()->action([PostController::class,'index']);
+        }
     }
 
 }

@@ -35,7 +35,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return redirect()->action([UserController::class,'index']);
+        if($request->get('name')==null){
+            return redirect()->back();
+        }
+        else
+        {
+            return redirect()->action([UserController::class,'index']);
+        }
     }
 
     public function edit($id)
@@ -52,7 +58,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return redirect()->action([UserController::class,'index']);
+        if($request->get('name')==null){
+                return redirect()->back();
+        }
+        else
+        {
+            return redirect()->action([UserController::class,'index']);
+        }
     }
 
     /**

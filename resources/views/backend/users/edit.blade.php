@@ -12,7 +12,7 @@
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Tên User</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên...">
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên...">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">Ngày</label>
