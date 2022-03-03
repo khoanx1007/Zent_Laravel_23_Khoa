@@ -4,20 +4,19 @@
 @section('content')
             <div class="card card-dark">
               <div class="card-header">
-                <h1 class="card-title">Tạo bài viết mới</h1>
+                <h3 class="card-title">Chỉnh Sửa Bài Viết</h3>
               </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form action="{{route('backend.posts.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+              <form action="{{route('backend.posts.update') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 @csrf
+                <input type="hidden" name="_method" value="put"/>
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên bài viết</label>
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
+                    <input type="name" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
                   </div>
                   <div class="form-group">
                     <label>Text Arena</label>
-                    <textarea id="summernote" name="content" class="form-control"></textarea>
+                    <textarea id="summernote" class="form-control"></textarea>
                   </div>
                   <div class="row">
                     <div class="form-group col-6" >
@@ -45,9 +44,9 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-dark">Tạo</button>
+                  <button type="submit" class="btn btn-dark">Sửa</button>
                   <a href="" class="btn btn-default float-right">Huỷ</a>
                 </div>
               </form>
-            </div>
+            </div> 
 @endsection

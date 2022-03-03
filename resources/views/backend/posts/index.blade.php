@@ -58,7 +58,7 @@
                         <td>Khoa</td>
                         <td>11-7-2014</td>
                         <td>
-                          <a href="{{route('backend.posts.edit') }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <a href=""  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>                         
                         </td>
                       </tr>
