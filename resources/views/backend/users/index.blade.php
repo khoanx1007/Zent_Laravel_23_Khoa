@@ -56,7 +56,7 @@
                         <td>11-7-2014</td>
                         <td><span class="text-success">Chấp thuận</span></td>
                         <td>
-                          <a href="{{route('backend.users.edit') }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <a href="{{route('backend.users.edit',1) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>                         
                         </td>
                       </tr>
@@ -66,7 +66,7 @@
                         <td>11-7-2014</td>
                         <td><span class="text-warning">Chờ</span></td>
                         <td>
-                          <a href="{{route('backend.users.edit') }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <a href="{{route('backend.users.edit',2) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                       </tr>
@@ -76,7 +76,7 @@
                         <td>11-7-2014</td>
                         <td><span class="text-success">Chấp thuận</span></td>
                         <td>
-                          <a href="{{route('backend.users.edit') }}" class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <a href="{{route('backend.users.edit',3) }}" class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                       </tr>
@@ -86,7 +86,7 @@
                         <td>11-7-2014</td>
                         <td><span class="text-danger">Từ Chối</span></td>
                         <td>
-                          <a href="{{route('backend.users.edit') }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <a href="{{route('backend.users.edit',4) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                       </tr>

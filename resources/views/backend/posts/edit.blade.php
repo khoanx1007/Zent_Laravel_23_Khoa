@@ -6,7 +6,7 @@
               <div class="card-header">
                 <h3 class="card-title">Chỉnh Sửa Bài Viết</h3>
               </div>
-              <form action="{{route('backend.posts.update') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+              <form action="{{route('backend.posts.update',1) }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <input type="hidden" name="_method" value="put"/>
                 <div class="card-body">

@@ -35,7 +35,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        
+        return redirect()->action([PostController::class,'index']);
     }
 
     /**
@@ -44,11 +44,6 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        return view('backend.posts.edit');
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -57,7 +52,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.posts.edit');
     }
 
     /**
@@ -69,17 +64,7 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->action([PostController::class,'index']);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

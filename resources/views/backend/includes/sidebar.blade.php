@@ -35,7 +35,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
               <li class="nav-item">
-              <a href="{{route('backend.dashboard')}}" class="nav-link">
+              <a href="#1" class="nav-link @if (request()->is('backend/dashboard')) active @endif ">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                   Dashboard
@@ -43,8 +43,8 @@
               </a>
               </li>
             <li class="nav-header">Quản lý chung</li>
-            <li class="nav-item">
-              <a href="#2" class="nav-link">
+            <li class="nav-item @if (request()->routeIs('backend.posts.*')) menu-open @endif">
+              <a href="#2" class="nav-link @if (request()->routeIs('backend.posts.*')) active @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Quản lý Blog
@@ -54,13 +54,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('backend.posts.create') }}" class="nav-link active">
+                  <a href="{{route('backend.posts.create') }}" class="nav-link @if (request()->routeIs('backend.posts.create')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tạo mới Blog</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{route('backend.posts.index') }}" class="nav-link @if (request()->routeIs('backend.posts.index')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Danh sách Blog</p>
                   </a>
@@ -68,8 +68,8 @@
               </ul>
             </li>
             <li class="nav-header">Hệ thống</li>
-            <li class="nav-item">
-              <a href="" class="nav-link">
+            <li class="nav-item  @if (request()->routeIs('backend.users.*')) menu-open  @endif">
+              <a href="" class="nav-link @if (request()->routeIs('backend.users.*')) active  @endif">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                   Quản lý Users
@@ -79,13 +79,13 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="{{route('backend.users.create') }}" class="nav-link active">
+                  <a href="{{route('backend.users.create') }}" class="nav-link @if (request()->routeIs('backend.users.create')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tạo mới user</p>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('backend.users.index') }}" class="nav-link">
+                  <a href="{{route('backend.users.index') }}" class="nav-link @if (request()->routeIs('backend.users.index')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Danh sách users</p>
                   </a>

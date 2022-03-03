@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.users.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.users.create');
     }
 
     /**
@@ -35,29 +35,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return redirect()->action([UserController::class,'index']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        return view('backend.users.edit');
     }
 
     /**
@@ -69,7 +52,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->action([UserController::class,'index']);
     }
 
     /**
@@ -78,8 +61,4 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
-    }
 }

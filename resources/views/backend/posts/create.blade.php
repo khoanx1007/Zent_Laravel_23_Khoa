@@ -8,7 +8,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('backend.posts.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+              <form action="{{route('backend.posts.store',1) }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
