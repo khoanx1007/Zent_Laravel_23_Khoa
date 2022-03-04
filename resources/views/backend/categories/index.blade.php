@@ -1,18 +1,18 @@
 @extends('backend.layouts.master')
 @section('title')
-Danh sách Blog
+Danh sách danh mục
 @endsection
 @section('content-header')
     <div class="content-header">
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-6">
-            <h1 class="m-0">Danh sách bài viết</h1>
+            <h1 class="m-0">Danh sách danh mục</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Danh sách bài Viết</li>
+              <li class="breadcrumb-item active">Danh sách danh mục</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,7 +27,7 @@ Danh sách Blog
               <div class="card">
                 <!-- /.card-header -->
                 <div class="card-header">
-                  <a href="{{route('backend.posts.create') }}"  class="btn btn-success"><i class="fas fa-plus"></i></a>
+                  <a href="{{route('backend.categories.create') }}"  class="btn btn-success"><i class="fas fa-plus"></i></a>
 
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -46,9 +46,8 @@ Danh sách Blog
                     <thead>
                       <tr class="bg-dark" aria-expanded="false">
                         <th>ID</th>
-                        <th>Tên bài viết</th>
-                        <th>Danh mục</th>
-                        <th>Người tạo</th>
+                        <th>Tên danh mục</th>
+                        <th>Mô tả</th>
                         <th>Ngày tạo</th>
                         <th>Thao tác</th>
                       </tr>
@@ -56,12 +55,11 @@ Danh sách Blog
                     <tbody>
                       <tr data-widget="expandable-table" aria-expanded="true">
                         <td>1</td>
-                        <td class="text-primary" style="max-width:80px;" >Cận cảnh bên trong chiếc cano bị chìm khiến 17 người chết và mất tích </td>
-                        <td>Xã hội</td>
-                        <td>Khoa</td>
+                        <td class="text-primary" style="max-width:80px;" >Xã hội</td>
+                        <td>Tin tức về xã hội</td>
                         <td>11-7-2014</td>
                         <td>
-                          <a href="{{route('backend.posts.edit',1) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <a href="{{route('backend.categories.edit',1) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>                         
                         </td>
                       </tr>

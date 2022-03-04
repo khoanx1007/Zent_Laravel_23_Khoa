@@ -1,5 +1,6 @@
 @extends('backend.layouts.master')
-@section('content-header')
+@section('title')
+Tạo User
 @endsection
 @section('content')
             <div class="card card-dark">
@@ -10,13 +11,17 @@
               <!-- form start -->
               <form action="{{route('backend.users.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 <div class="card-body">
-                  <div class="form-group">
+                <div class="form-group">
                     <label for="exampleInputEmail1">Tên User</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên...">
+                    <input type="text" name="name" class="form-control"  placeholder="Nhập tên...">
                   </div>
                   <div class="form-group">
-                    <label for="exampleInputPassword1">Ngày</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Nhập ngày...">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" name="email" class="form-control"  placeholder="Nhập email...">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input type="password" name="password" class="form-control"  placeholder="Nhập mật khẩu...">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputFile">File Ảnh</label>

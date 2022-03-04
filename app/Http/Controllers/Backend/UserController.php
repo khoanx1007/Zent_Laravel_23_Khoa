@@ -65,7 +65,7 @@ class UserController extends Controller
         {
             return redirect()->action([UserController::class,'index']);
         }
-    }
+    }   
 
     /**
      * Remove the specified resource from storage.

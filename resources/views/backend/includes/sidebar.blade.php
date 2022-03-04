@@ -35,7 +35,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
               <li class="nav-item">
-              <a href="#1" class="nav-link @if (request()->is('backend/dashboard')) active @endif ">
+              <a href="{{route('backend.dashboard') }}" class="nav-link @if (request()->is('backend/dashboard')) active @endif ">
                   <i class="nav-icon far fa-calendar-alt"></i>
                   <p>
                   Dashboard
@@ -61,6 +61,30 @@
                 </li>
                 <li class="nav-item">
                   <a href="{{route('backend.posts.index') }}" class="nav-link @if (request()->routeIs('backend.posts.index')) active @endif">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Danh sách Blog</p>
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item @if (request()->routeIs('backend.categories.*')) menu-open @endif">
+              <a href="#2" class="nav-link @if (request()->routeIs('backend.categories.*')) active @endif">
+                <i class="nav-icon fas fa-tachometer-alt"></i>
+                <p>
+                  Quản lý danh mục
+                  <i class="fas fa-angle-left right"></i>
+
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{route('backend.categories.create') }}" class="nav-link @if (request()->routeIs('backend.categories.create')) active @endif">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Tạo mới danh mục</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('backend.categories.index') }}" class="nav-link @if (request()->routeIs('backend.categories.index')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Danh sách Blog</p>
                   </a>

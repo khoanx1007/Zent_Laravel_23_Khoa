@@ -1,4 +1,7 @@
 @extends('backend.layouts.master')
+@section('title')
+Danh sách User
+@endsection
 @section('content-header')
     <div class="content-header">
       <div class="container-fluid">
