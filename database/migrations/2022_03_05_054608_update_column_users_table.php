@@ -14,10 +14,10 @@ class UpdateColumnUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->after('name');
-            $table->string('address')->after('avatar');
-            $table->string('phone')->after('address');
-            $table->integer('status')->after('phone');
+            $table->string('avatar')->nullable()->after('name');
+            $table->string('address')->nullable()->after('avatar');
+            $table->string('phone')->nullable()->after('address');
+            $table->integer('status')->nullable()->after('phone');
         });
     }
 
