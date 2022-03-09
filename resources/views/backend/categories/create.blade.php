@@ -9,16 +9,16 @@ Tạo Blog
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('backend.categories.store',1) }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+              <form action="{{route('backend.categories.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên danh mục</label>
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
+                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
                   </div>
                   <div class="form-group">
                     <label>Mô tả</label>
-                    <textarea id="summernote" name="content" class="form-control"></textarea>
+                    <textarea id="editor" name="content" class="form-control"></textarea>
                   </div>
                   </div>
                 </div>

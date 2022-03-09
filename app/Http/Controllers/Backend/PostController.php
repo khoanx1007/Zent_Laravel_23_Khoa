@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,11 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('backend.posts.index');
+
+        $posts = DB::table('posts')->get();
+        return view('backend.posts.index')->with([
+            'posts'=>$posts
+        ]);
     }
 
     /**
@@ -21,6 +27,14 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        $post=DB::table('posts')->find($id);
+        return view('backend.posts.show',[
+            'post' => $post
+        ]);
+    }
+
     public function create()
     {
         return view('backend.posts.create');
@@ -39,25 +53,26 @@ class PostController extends Controller
         }
         else
         {
-            return redirect()->action([PostController::class,'index']);
+            $data = $request->only(['title','content']);
+            DB::table('posts')->insert([
+                'title' => $data['title'],
+                'slug' => Str::slug($data['title']),
+                'content' => $data['content'],
+                'user_created_id' => 1,
+                'user_updated_id' => 1,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+            return redirect()->route('backend.posts.index');
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        return view('backend.posts.edit');
+        $post = DB::table('posts')->find($id);
+        return view('backend.posts.edit')->with([
+            'post'=>$post
+        ]);
     }
 
     /**
@@ -74,8 +89,19 @@ class PostController extends Controller
         }
         else
         {
-            return redirect()->action([PostController::class,'index']);
+            $data = $request->only(['title','content']);
+            DB::table('posts')->where('id',$id)
+                ->update([
+                'title' => $data['title'],
+                'content' => $data['content'],
+            ]);
+            return redirect()->route('backend.posts.index');
         }
+    }
+    public function destroy($id)
+    {
+        DB::table('posts')->where('id',$id)->delete();
+        return redirect()->route('backend.posts.index');
     }
 
 }

@@ -86,7 +86,7 @@
                 <li class="nav-item">
                   <a href="{{route('backend.categories.index') }}" class="nav-link @if (request()->routeIs('backend.categories.index')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Danh sách Blog</p>
+                    <p>Danh sách danh mục</p>
                   </a>
                 </li>
               </ul>

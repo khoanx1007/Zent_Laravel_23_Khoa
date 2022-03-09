@@ -47,52 +47,29 @@ Danh sách User
                       <tr class="bg-dark">
                         <th>ID</th>
                         <th>Tên User</th>
-                        <th>Ngày</th>
+                        <th>Email</th>
                         <th>Trạng thái</th>
-                        <th>Thao tác</th>
+                        <th>Ngày tạo</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                     
+                      @foreach($users as $user)
                       <tr>
-                        <td>1</td>
-                        <td>Khoa1</td>
-                        <td>11-7-2014</td>
+                        <td>{{$user->id}}</td>
+                        <td>{{$user->name}}</td>
+                        <td>{{$user->email}}</td>
                         <td><span class="text-success">Chấp thuận</span></td>
                         <td>
-                          <a href="{{route('backend.users.edit',1) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>                         
+                          <a href="{{route('backend.users.show',$user->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
+                          <a href="{{route('backend.users.edit',$user->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <form method="POST" action="{{route('backend.users.destroy',$user->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button  class="btn btn-danger"><i class="fas fa-trash"></i></button>  
+                          </form>                         
                         </td>
                       </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>Khoa2</td>
-                        <td>11-7-2014</td>
-                        <td><span class="text-warning">Chờ</span></td>
-                        <td>
-                          <a href="{{route('backend.users.edit',2) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Khoa3</td>
-                        <td>11-7-2014</td>
-                        <td><span class="text-success">Chấp thuận</span></td>
-                        <td>
-                          <a href="{{route('backend.users.edit',3) }}" class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>Khoa4</td>
-                        <td>11-7-2014</td>
-                        <td><span class="text-danger">Từ Chối</span></td>
-                        <td>
-                          <a href="{{route('backend.users.edit',4) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        </td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

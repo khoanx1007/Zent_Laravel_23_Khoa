@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +15,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('backend.categories.index');
+        $categories = DB::table('categories')->get();
+        return view('backend.categories.index')->with([
+            'categories'=>$categories
+        ]);
     }
 
     /**
@@ -34,13 +39,20 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->get('title')==null){
-                return redirect()->back();
-        }
-        else
-        {
-            return redirect()->action([PostController::class,'index']);
-        }
+        if($request->get('name')==null){
+            return redirect()->back();
+    }
+    else
+    {
+        $data = $request->only(['name','content']);
+        DB::table('categories')->insert([
+            'name' => $data['name'],
+            'content' => $data['content'],
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+        return redirect()->route('backend.categories.index');
+    }
     }
 
     /**
@@ -57,7 +69,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.categories.edit');
+        $category = DB::table('categories')->find($id);
+        return view('backend.categories.edit')->with([
+            'category'=> $category
+        ]);
     }
 
     /**
@@ -69,13 +84,24 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->get('title')==null){
-                return redirect()->back();
-        }
-        else
-        {
-            return redirect()->action([PostController::class,'index']);
-        }
+        if($request->get('name')==null){
+            return redirect()->back();
+    }
+    else
+    {
+        $data = $request->only(['name','content']);
+        DB::table('categories')->where('id',$id)
+            ->update([
+            'name' => $data['name'],
+            'content' => $data['content'],
+        ]);
+        return redirect()->route('backend.categories.index');
+    }
+    }
+    public function destroy($id)
+    {
+        DB::table('categories')->where('id',$id)->delete();
+        return redirect()->route('backend.categories.index');
     }
 
 }

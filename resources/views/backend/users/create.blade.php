@@ -10,7 +10,8 @@ Tạo User
               <!-- /.card-header -->
               <!-- form start -->
               <form action="{{route('backend.users.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
-                <div class="card-body">
+              @csrf  
+              <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Tên User</label>
                     <input type="text" name="name" class="form-control"  placeholder="Nhập tên...">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.users.index');
+        $users = DB::table('users')->get();
+        return view('backend.users.index')->with([
+            'users'=>$users
+        ]);
     }
 
     /**
@@ -22,6 +26,13 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function show($id)
+    {
+        $user=DB::table('users')->find($id);
+        return view('backend.users.show',[
+            'user' => $user
+        ]);
+    }
     public function create()
     {
         return view('backend.users.create');
@@ -36,17 +47,26 @@ class UserController extends Controller
     public function store(Request $request)
     {
         if($request->get('name')==null){
-            return redirect()->back();
+                return redirect()->back();
         }
         else
         {
-            return redirect()->action([UserController::class,'index']);
+            $data = $request->only(['name','email','password']);
+            DB::table('users')->insert([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => $data['password']
+            ]);
+            return redirect()->route('backend.users.index');
         }
     }
 
     public function edit($id)
     {
-        return view('backend.users.edit');
+        $user = DB::table('users')->find($id);
+        return view('backend.users.edit')->with([
+            'user'=>$user
+        ]);
     }
 
     /**
@@ -58,14 +78,26 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->get('name')==null){
-                return redirect()->back();
-        }
-        else
-        {
-            return redirect()->action([UserController::class,'index']);
-        }
+        if($request->get('title')==null){
+            return redirect()->back();
+    }
+    else
+    {
+        $data = $request->only(['name','email','password']);
+        DB::table('users')->where('id',$id)
+            ->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]);
+        return redirect()->route('backend.users.index');
+    }
     }   
+    public function destroy($id)
+    {
+        DB::table('users')->where('id',$id)->delete();
+        return redirect()->route('backend.users.index');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -73,4 +105,5 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
 }

@@ -7,17 +7,18 @@ Chỉnh sửa Blog
               <div class="card-header">
                 <h3 class="card-title">Chỉnh Sửa Bài Viết</h3>
               </div>
-              <form action="{{route('backend.categories.update',1) }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+              <form action="{{route('backend.categories.update',$category->id) }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 @csrf
+                @method('PUT')
                 <input type="hidden" name="_method" value="put"/>
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên bài viết</label>
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
+                    <input type="text" name="name" class="form-control" value="{{$category->name}}" id="exampleInputEmail1" placeholder="Enter...">
                   </div>
                   <div class="form-group">
                     <label>Mô tả</label>
-                    <textarea id="summernote" class="form-control"></textarea>
+                    <textarea id="editor" name="content" class="form-control">{{$category->content}}</textarea>
                   </div>
                 </div>
                 <!-- /.card-body -->

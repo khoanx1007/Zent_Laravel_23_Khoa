@@ -24,6 +24,8 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="/backend/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
+  <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+  <!-- Ckeditor -->
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 </head>
@@ -83,10 +85,17 @@
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="/backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
-<script src="/backend/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script src="../../backend/plugins/ckeditor5/ckeditor.js"></script>
 <script>
-    $(document).ready(function() {
-        $('#summernote').summernote();
+  ClassicEditor
+    .create(document.querySelector('#editor'))
+    .catch(error=>{
+      console.error(error)
+    });
+    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+      mode: "htmlmixed",
+      theme: "monokai"
     });
   </script>
 <!-- overlayScrollbars -->

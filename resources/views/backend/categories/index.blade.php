@@ -53,16 +53,22 @@ Danh sách danh mục
                       </tr>
                     </thead>
                     <tbody>
-                      <tr data-widget="expandable-table" aria-expanded="true">
-                        <td>1</td>
-                        <td class="text-primary" style="max-width:80px;" >Xã hội</td>
-                        <td>Tin tức về xã hội</td>
-                        <td>11-7-2014</td>
-                        <td>
-                          <a href="{{route('backend.categories.edit',1) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>                         
-                        </td>
-                      </tr>
+                      @foreach($categories as $category)
+                        <tr data-widget="expandable-table" aria-expanded="true">
+                          <td>{{$category->id}}</td>
+                          <td class="text-primary" style="max-width:80px;" >{{$category->name}}</td>
+                          <td>{{$category->content}}</td>
+                          <td>{{$category->created_at}}</td>
+                          <td>
+                            <a href="{{route('backend.categories.edit',$category->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                            <form method="POST" action="{{route('backend.categories.destroy',$category->id) }}">
+                              @csrf
+                              @method('DELETE')
+                              <button  class="btn btn-danger"><i class="fas fa-trash"></i></button>  
+                            </form>                         
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

@@ -9,7 +9,7 @@ Tạo Blog
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form action="{{route('backend.posts.store',1) }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+              <form action="{{route('backend.posts.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -18,7 +18,7 @@ Tạo Blog
                   </div>
                   <div class="form-group">
                     <label>Text Arena</label>
-                    <textarea id="summernote" name="content" class="form-control"></textarea>
+                    <textarea id="editor" name="content" class="form-control"></textarea>
                   </div>
                   <div class="row">
                     <div class="form-group col-6" >

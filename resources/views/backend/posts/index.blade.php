@@ -54,17 +54,24 @@ Danh sách Blog
                       </tr>
                     </thead>
                     <tbody>
+                    @foreach($posts as $post)
                       <tr data-widget="expandable-table" aria-expanded="true">
-                        <td>1</td>
-                        <td class="text-primary" style="max-width:80px;" >Cận cảnh bên trong chiếc cano bị chìm khiến 17 người chết và mất tích </td>
-                        <td>Xã hội</td>
-                        <td>Khoa</td>
+                        <td>{{$post->id}}</td>
+                        <td class="text-primary" style="max-width:80px;" >{{$post->title}} </td>
+                        <td>{{$post->content}}</td>
+                        <td>{{$post->status}}</td>
                         <td>11-7-2014</td>
                         <td>
-                          <a href="{{route('backend.posts.edit',1) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <a href="#"  class="btn btn-danger"><i class="fas fa-trash"></i></a>                         
+                          <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
+                          <a href="{{route('backend.posts.edit',$post->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
+                          <form method="POST" action="{{route('backend.posts.destroy',$post->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button  class="btn btn-danger"><i class="fas fa-trash"></i></button>  
+                          </form>                       
                         </td>
                       </tr>
+                    @endforeach
                     </tbody>
                   </table>
                 </div>
