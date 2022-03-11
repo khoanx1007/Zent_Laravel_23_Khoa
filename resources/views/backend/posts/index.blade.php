@@ -28,16 +28,16 @@ Danh sách Blog
                 <!-- /.card-header -->
                 <div class="card-header">
                   <a href="{{route('backend.posts.create') }}"  class="btn btn-success"><i class="fas fa-plus"></i></a>
-
                   <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
+                    <form>
+                      <div class="input-group input-group-md" style="width: 400px;">
+                        <input type="text" name="title" class="form-control float-right" placeholder="Title">
+                        <input type="text" name="status" class="form-control float-right" placeholder="Status">
+                          <button type="submit" class="btn btn-default">
+                            Filter
+                          </button>
                       </div>
+                    </form>
                     </div>
                   </div>
                 </div>
@@ -47,8 +47,7 @@ Danh sách Blog
                       <tr class="bg-dark" aria-expanded="false">
                         <th>ID</th>
                         <th>Tên bài viết</th>
-                        <th>Danh mục</th>
-                        <th>Người tạo</th>
+                        <th>Tình Trạng</th>
                         <th>Ngày tạo</th>
                         <th>Thao tác</th>
                       </tr>
@@ -58,9 +57,8 @@ Danh sách Blog
                       <tr data-widget="expandable-table" aria-expanded="true">
                         <td>{{$post->id}}</td>
                         <td class="text-primary" style="max-width:80px;" >{{$post->title}} </td>
-                        <td>{{$post->content}}</td>
                         <td>{{$post->status}}</td>
-                        <td>11-7-2014</td>
+                        <td>{{$post->created_at}}</td>
                         <td>
                           <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                           <a href="{{route('backend.posts.edit',$post->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>

@@ -15,8 +15,17 @@ class PostController extends Controller
      */
     public function index()
     {
-
-        $posts = DB::table('posts')->get();
+        $title=request()->get('title');
+        $status=request()->get('status');
+        $posts_query = DB::table('posts')->select('*');
+        $posts = $posts_query->get();
+        if (!empty($email)){
+            $posts_query = $posts_query->where('title',$title);
+        }
+        if (!empty($name)){
+            $posts_query = $posts_query->where('status',$status);
+        }
+        $posts = DB::table('posts')->orderBy('id','desc')->get();
         return view('backend.posts.index')->with([
             'posts'=>$posts
         ]);

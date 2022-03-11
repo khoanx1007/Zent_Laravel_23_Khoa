@@ -15,6 +15,17 @@ class UserController extends Controller
      */
     public function index()
     {
+        $email=request()->get('email');
+        $name=request()->get('name');
+        $users_query = DB::table('users')->select('*');
+        
+        if (!empty($email)){
+            $users_query = $users_query->where('email',$email);
+        }
+        if (!empty($name)){
+            $users_query = $users_query->where('name',$name);
+        }
+        $users = $users_query->get(); 
         $users = DB::table('users')->get();
         return view('backend.users.index')->with([
             'users'=>$users

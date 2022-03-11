@@ -28,17 +28,17 @@ Danh sách User
                 <!-- /.card-header -->
                 <div class="card-header">
                   <a href="{{route('backend.users.create') }}"  class="btn btn-success"><i class="fas fa-plus"></i></a>
-
-                  <div class="card-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                      <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-default">
-                          <i class="fas fa-search"></i>
-                        </button>
+                  <form>
+                      <div class="input-group input-group-md" style="width: 400px;">
+                        <input type="text" name="email" class="form-control float-right" placeholder="Email" value="{{request()->get('email')}}">
+                        <input type="text" name="name" class="form-control float-right"  placeholder="Name" value="{{request()->get('name')}}">
+                          <button type="submit" class="btn btn-default">
+                            Filter 
+                          </button>
                       </div>
-                    </div>
+                    </form>
+                  <div class="card-tools">
+                    
                   </div>
                 </div>
                 <div class="card-body table-responsive p-0">
