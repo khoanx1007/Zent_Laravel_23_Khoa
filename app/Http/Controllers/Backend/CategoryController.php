@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -15,8 +16,15 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = DB::table('categories')->get();
+        $categories = Category::orderBy('id','desc')->paginate(3);
         return view('backend.categories.index')->with([
+            'categories'=>$categories
+        ]);
+    }
+    public function index2()
+    {
+        $categories = Category::onlyTrashed()->paginate(3); 
+        return view('backend.categories.index2')->with([
             'categories'=>$categories
         ]);
     }
@@ -45,11 +53,10 @@ class CategoryController extends Controller
     else
     {
         $data = $request->only(['name','content']);
-        DB::table('categories')->insert([
+        $category = Category::create([
             'name' => $data['name'],
-            'content' => $data['content'],
-            'created_at' => now(),
-            'updated_at' => now()
+            //'slug' => Str::slug($data['name']),
+            'content'=> $data['content'],
         ]);
         return redirect()->route('backend.categories.index');
     }
@@ -90,18 +97,23 @@ class CategoryController extends Controller
     else
     {
         $data = $request->only(['name','content']);
-        DB::table('categories')->where('id',$id)
-            ->update([
-            'name' => $data['name'],
-            'content' => $data['content'],
-        ]);
+        $category = Category::find($id);
+        $category->name = $data['name'];
+        $category->content = $data['content'];
+        $category->save();
         return redirect()->route('backend.categories.index');
     }
     }
     public function destroy($id)
     {
-        DB::table('categories')->where('id',$id)->delete();
+        Category::destroy($id);
         return redirect()->route('backend.categories.index');
+    }
+    public function restore($id)
+    {
+        $category=Category::withTrashed()->find($id);
+        $category->restore();
+        return redirect()->route('backend.categories.index2');
     }
 
 }

@@ -32,7 +32,6 @@ Danh sách Blog
                     <form>
                       <div class="input-group input-group-md" style="width: 400px;">
                         <input type="text" name="title" class="form-control float-right" placeholder="Title">
-                        <input type="text" name="status" class="form-control float-right" placeholder="Status">
                           <button type="submit" class="btn btn-default">
                             Filter
                           </button>
@@ -47,6 +46,7 @@ Danh sách Blog
                       <tr class="bg-dark" aria-expanded="false">
                         <th>ID</th>
                         <th>Tên bài viết</th>
+                        <th>Lượt xem</th>
                         <th>Tình Trạng</th>
                         <th>Ngày tạo</th>
                         <th>Thao tác</th>
@@ -56,7 +56,10 @@ Danh sách Blog
                     @foreach($posts as $post)
                       <tr data-widget="expandable-table" aria-expanded="true">
                         <td>{{$post->id}}</td>
-                        <td class="text-primary" style="max-width:80px;" >{{$post->title}} </td>
+                        <td class="text-primary" style="max-width:80px;" >{{$post->title}}
+                        <p class="text-dark">Slug: {{$post->slug}}</p>
+                        </td>
+                        <td>{{$post->view_count}}</td>
                         <td>{{$post->status}}</td>
                         <td>{{$post->created_at}}</td>
                         <td>
@@ -72,6 +75,7 @@ Danh sách Blog
                     @endforeach
                     </tbody>
                   </table>
+                  {{$posts->links()}}
                 </div>
                 <!-- /.card-body -->
               </div>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Backend;
+use App\Models\Post;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
@@ -15,17 +16,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $title=request()->get('title');
-        $status=request()->get('status');
+        $title=\request()->get('title');
         $posts_query = DB::table('posts')->select('*');
-        $posts = $posts_query->get();
-        if (!empty($email)){
-            $posts_query = $posts_query->where('title',$title);
+        if (!empty($title)){
+            $posts_query = $posts_query->where('title',"LIKE","%$title%");
         }
-        if (!empty($name)){
-            $posts_query = $posts_query->where('status',$status);
-        }
-        $posts = DB::table('posts')->orderBy('id','desc')->get();
+        $posts =$posts_query->paginate(5);
         return view('backend.posts.index')->with([
             'posts'=>$posts
         ]);
@@ -38,7 +34,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post=DB::table('posts')->find($id);
+        $post=Post::find($id);
         return view('backend.posts.show',[
             'post' => $post
         ]);
@@ -57,20 +53,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->get('title')==null){
+        if(Post::get('title')==null){
                 return redirect()->back();
         }
         else
-        {
+        {   
             $data = $request->only(['title','content']);
-            DB::table('posts')->insert([
+            // $post = new Post();
+            // $post->title = $data['title'];
+            // $post->slug = Str::slug($data['title']);
+            // $post->slug = $data['title'];
+            // $post->user_created_id=1;
+            // $post->content = $data['content'];
+            // $post->save();
+            $post = Post::create([
                 'title' => $data['title'],
-                'slug' => Str::slug($data['title']),
-                'content' => $data['content'],
-                'user_created_id' => 1,
-                'user_updated_id' => 1,
-                'created_at' => now(),
-                'updated_at' => now()
+                //'slug' => Str::slug($data['title']),
+                'content'=> $data['content'],
+                'user_created_id'=> 1,
             ]);
             return redirect()->route('backend.posts.index');
         }
@@ -99,17 +99,17 @@ class PostController extends Controller
         else
         {
             $data = $request->only(['title','content']);
-            DB::table('posts')->where('id',$id)
-                ->update([
-                'title' => $data['title'],
-                'content' => $data['content'],
-            ]);
+            $post = Post::find($id);
+            $post->title = $data['title'];
+            $post->user_created_id=1;
+            $post->content = $data['content'];
+            $post->save();
             return redirect()->route('backend.posts.index');
         }
     }
     public function destroy($id)
     {
-        DB::table('posts')->where('id',$id)->delete();
+        Post::where('id',$id)->delete();
         return redirect()->route('backend.posts.index');
     }
 

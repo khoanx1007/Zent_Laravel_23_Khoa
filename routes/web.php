@@ -24,7 +24,11 @@ Route::prefix('backend')
     ->name('backend.')
     ->namespace('Backend')
     ->group(function(){
-    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');  
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/users/recycle', 'UserController@index2')->name('users.index2');  
+    Route::get('/users/recycle/{user}','UserController@restore')->name('users.restore');
+    Route::get('/categories/recycle', 'CategoryController@index2')->name('categories.index2');  
+    Route::get('/categories/recycle/{user}','CategoryController@restore')->name('categories.restore');
     Route::resources([
         'posts' => PostController::class,
         'users' => UserController::class,

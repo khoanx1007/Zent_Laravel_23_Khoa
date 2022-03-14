@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -15,23 +16,36 @@ class UserController extends Controller
      */
     public function index()
     {
-        $email=request()->get('email');
-        $name=request()->get('name');
-        $users_query = DB::table('users')->select('*');
-        
+        $email=\request()->get('email');
+        $name=\request()->get('name');
+        $users_query = User::select('*');
         if (!empty($email)){
-            $users_query = $users_query->where('email',$email);
+            $users_query = $users_query->where('email',"LIKE","%$email%");
         }
         if (!empty($name)){
-            $users_query = $users_query->where('name',$name);
+            $users_query = $users_query->where('name',"LIKE","%$name%");
         }
-        $users = $users_query->get(); 
-        $users = DB::table('users')->get();
+        $users =  $users_query->paginate(5); 
         return view('backend.users.index')->with([
             'users'=>$users
         ]);
     }
-
+    public function index2()
+    {   
+        $email=\request()->get('email');
+        $name=\request()->get('name');
+        $users_query = User::select('*');
+        if (!empty($email)){
+            $users_query = $users_query->where('email',"LIKE","%$email%");
+        }
+        if (!empty($name)){
+            $users_query = $users_query->where('name',"LIKE","%$name%");
+        }
+        $users = $users_query->onlyTrashed()->paginate(5); 
+        return view('backend.users.index2')->with([
+            'users'=>$users
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -39,7 +53,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user=DB::table('users')->find($id);
+        $user=User::find($id);
         return view('backend.users.show',[
             'user' => $user
         ]);
@@ -63,7 +77,7 @@ class UserController extends Controller
         else
         {
             $data = $request->only(['name','email','password']);
-            DB::table('users')->insert([
+            User::insert([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'password' => $data['password']
@@ -74,7 +88,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $user = DB::table('users')->find($id);
+        $user = User::find($id);
         return view('backend.users.edit')->with([
             'user'=>$user
         ]);
@@ -95,7 +109,7 @@ class UserController extends Controller
     else
     {
         $data = $request->only(['name','email','password']);
-        DB::table('users')->where('id',$id)
+        User::where('id',$id)
             ->update([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -106,15 +120,14 @@ class UserController extends Controller
     }   
     public function destroy($id)
     {
-        DB::table('users')->where('id',$id)->delete();
+        User::destroy($id);
         return redirect()->route('backend.users.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    public function restore($id)
+    {
+        $user=User::withTrashed()->find($id);
+        $user->restore($id);
+        return redirect()->route('backend.users.index2');
+    }
     
 }

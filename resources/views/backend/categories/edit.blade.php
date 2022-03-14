@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Chỉnh sửa Blog
+Chỉnh sửa danh mục
 @endsection
 @section('content')
             <div class="card card-dark">
