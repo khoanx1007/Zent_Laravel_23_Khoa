@@ -16,12 +16,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $title=\request()->get('title');
-        $posts_query = DB::table('posts')->select('*');
-        if (!empty($title)){
-            $posts_query = $posts_query->where('title',"LIKE","%$title%");
-        }
-        $posts =$posts_query->paginate(5);
+        // $title=\request()->get('title');
+        // $posts_query = DB::table('posts')->select('*');
+        // if (!empty($title)){
+        //     $posts_query = $posts_query->where('title',"LIKE","%$title%");
+        // }
+        $posts =Post::paginate(5);
         return view('backend.posts.index')->with([
             'posts'=>$posts
         ]);

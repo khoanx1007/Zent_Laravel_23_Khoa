@@ -16,7 +16,7 @@ class Post extends Model
         'user_created_id'
     ];
     protected $statusArr = [
-        0 => 'Draft',
+        0 => 'Private',
         1 => 'Public'
     ];
     public function getStatusTextAttribute(){

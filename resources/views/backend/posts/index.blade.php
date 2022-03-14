@@ -60,7 +60,7 @@ Danh sách Blog
                         <p class="text-dark">Slug: {{$post->slug}}</p>
                         </td>
                         <td>{{$post->view_count}}</td>
-                        <td>{{$post->status}}</td>
+                        <td>{{$post->status_text}}</td>
                         <td>{{$post->created_at}}</td>
                         <td>
                           <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
