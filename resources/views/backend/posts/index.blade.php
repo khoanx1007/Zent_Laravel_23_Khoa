@@ -48,8 +48,8 @@ Danh sách Blog
                         <th>Tên bài viết</th>
                         <th>Danh mục</th>
                         <th>Tình Trạng</th>
+                        <th>Tag</th>
                         <th>Nguời tạo</th>
-                        <th>Người cập nhật</th>
                         <th>Ngày tạo</th>
                         <th>Thao tác</th>
                       </tr>
@@ -63,8 +63,12 @@ Danh sách Blog
                         </td>
                         <td>{{$post->category->name}}</td>
                         <td>{{$post->status_text}}</td>
+                        <td>
+                          @foreach($post->tags as $tag)
+                            <span class="badge badge-info">{{ $tag->name }}</span>
+                          @endforeach
+                        </td>
                         <td>{{$post->user->name}}</td>
-                        <td>{{$post->userUpdate->name}}</td>
                         <td>{{$post->created_at}}</td>
                         <td>
                           <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>

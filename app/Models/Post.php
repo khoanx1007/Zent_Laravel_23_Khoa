@@ -35,4 +35,7 @@ class Post extends Model
     public function userUpdate(){
         return $this->belongsTo(User::class,'user_updated_id');
     }
+    public function tags(){
+        return $this->belongsToMany(Tag::class);
+    }
 }
