@@ -37,7 +37,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post=Post::with('user')->find($id);
+        $post=Post::with('user','category','tags')->find($id);
         return view('backend.posts.show',[
             'post' => $post
         ]);
