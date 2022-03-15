@@ -20,27 +20,23 @@ Tạo Blog
                     <label>Text Arena</label>
                     <textarea id="editor" name="content" class="form-control"></textarea>
                   </div>
-                  <div class="row">
-                    <div class="form-group col-6" >
+                  <div class="form-group" >
+                        <label>Tags</label>
+                        <select multiple="" class="form-control" name="tags[]">
+                          @foreach ($tags as $item)
+                          <option value="{{$item->id}}">{{$item->name}}</option>
+                          @endforeach
+                        </select>
+                  </div>  
+                  <div class="form-group" >
                       <label>Danh mục</label>
                       <select class="form-control">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
+                          @foreach ($categories as $category)
+                            <option value="{{$category->id}}">{{$category->name}}</option>
+                          @endforeach
                       </select>
-                    </div>
-                    <div class="form-group col-6">
-                      <label>Trạng thái</label>
-                      <select class="form-control">
-                          <option>option 1</option>
-                          <option>option 2</option>
-                          <option>option 3</option>
-                          <option>option 4</option>
-                          <option>option 5</option>
-                      </select>
-                    </div>
+                  </div>
+                    
                   </div>
                 </div>
                 <!-- /.card-body -->
