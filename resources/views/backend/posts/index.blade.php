@@ -61,7 +61,7 @@ Danh sách Blog
                         <td class="text-primary" style="max-width:80px;" >{{$post->title}}
                         <p class="text-dark">Slug: {{$post->slug}}</p>
                         </td>
-                        <td>{{$post->category->name}}</td>
+                        <td>{{$post->view_count}}</td>
                         <td>{{$post->status_text}}</td>
                         <td>
                           @foreach($post->tags as $tag)
