@@ -22,9 +22,13 @@ Chỉnh sửa Blog
                   </div>
                   <div class="form-group col-12" >
                       <label>Danh mục</label>
-                      <select class="form-control">
+                      <select class="form-control" name='category'>
                           @foreach ($categories as $category)
-                            <option value="{{$category->id}}">{{$category->name}}</option>
+                            <option value="{{$category->id}}"
+                              @if($post->category_id == $category->id) 
+                                selected 
+                              @endif
+                              >{{$category->name}}</option>
                           @endforeach
                       </select>
                   </div>  

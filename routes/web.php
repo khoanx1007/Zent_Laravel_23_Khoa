@@ -1,6 +1,6 @@
 <?php
 
-
+use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\App;
@@ -33,34 +33,14 @@ Route::prefix('backend')
         'posts' => PostController::class,
         'users' => UserController::class,
         'categories' => CategoryController::class,
-    ]);
-    // Route::prefix('posts')->name('posts.')->group(function(){
-    //     Route::get('/list', function () {
-    //         return view('backend/posts/list');
-    //     })->name('list');
-    //     Route::view('/create', 'backend/posts/create')->name('create');
-    //     Route::post('/store', function () {
-    //         return redirect()->route('backend.posts.list');
-    //     })->name('store');
-    //     Route::view('/edit/{id}', 'backend/posts/edit')->name('edit');
-    //     Route::put('/update/{id}', function () {
-    //         return redirect()->route('backend.posts.list');
-    //     })->name('update');
-    //     Route::resource('posts',PostController::class);
-    //     Route::get('dashboard',function(){
-    //         return view('backend/posts/dashboard');
-    //}); 
-        //Route::prefix('users')->name('users.')->group(function(){
-        // Route::get('/list', function () {
-        //     return view('backend/users/list');
-        // })->name('list');
-        // Route::view('/create', 'backend/users/create')->name('create');
-        // Route::post('/store', function () {
-        //     return redirect()->route('backend.users.list');
-        // })->name('store');
-        // Route::view('/edit/{id}', 'backend/users/edit')->name('edit');
-        // Route::put('/update/{id}', function () {
-        //     return redirect()->route('backend.users.list');
-        // })->name('update');
-        //}); 
+    ]); 
 });
+    Route::prefix('/')
+        ->namespace('Auth')
+        ->name('auth.')->group(function(){
+            Route::get('/register', 'RegisteredUserController@create')
+            ->middleware('guest')
+            ->name('register');
+            Route::post('/register','RegisteredUserController@store')
+            ->middleware('guest');
+        });

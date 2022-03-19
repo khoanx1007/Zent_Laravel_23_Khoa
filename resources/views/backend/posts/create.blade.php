@@ -30,7 +30,7 @@ Tạo Blog
                   </div>  
                   <div class="form-group" >
                       <label>Danh mục</label>
-                      <select class="form-control">
+                      <select class="form-control" name="category">
                           @foreach ($categories as $category)
                             <option value="{{$category->id}}">{{$category->name}}</option>
                           @endforeach

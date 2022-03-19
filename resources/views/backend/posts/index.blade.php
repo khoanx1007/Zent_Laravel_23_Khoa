@@ -32,6 +32,7 @@ Danh sách Blog
                     <form>
                       <div class="input-group input-group-md" style="width: 400px;">
                         <input type="text" name="title" class="form-control float-right" placeholder="Title">
+                        <input type="text" name="status" class="form-control float-right" placeholder="Status">
                           <button type="submit" class="btn btn-default">
                             Filter
                           </button>

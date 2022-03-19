@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         $email=\request()->get('email');
         $name=\request()->get('name');
-        $users_query = User::select('*');
+        $users_query = User::orderBy('id','desc')->select('*');
         if (!empty($email)){
             $users_query = $users_query->where('email',"LIKE","%$email%");
         }
