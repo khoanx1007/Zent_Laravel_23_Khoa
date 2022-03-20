@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                                 'id' => '1',
                                 'name' => 'Admin1',
                                 'email' => 'khoa1@gmail.com',
-                                'password' => bcrypt('4114523')
+                                'password' => bcrypt('123456')
                             ],
                     
                         'info' =>  [
@@ -35,7 +35,7 @@ class UsersTableSeeder extends Seeder
                                     'id' => '2',
                                     'name' => 'Admin2',
                                     'email' => 'khoa2@gmail.com',
-                                    'password' => bcrypt('32412512')
+                                    'password' => bcrypt('123456')
                                     ],
                         'info'=>[
                                     'address' => 'Ho Chi Minh',
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
                                         'id' => '3',
                                         'name' => 'Admin3',
                                         'email' => 'khoa3@gmail.com',
-                                        'password' => bcrypt('1234214')
+                                        'password' => bcrypt('123456')
                                     ],
                         'info' => [
                                     'address' => 'Da Nang',

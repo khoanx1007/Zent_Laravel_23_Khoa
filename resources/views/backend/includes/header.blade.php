@@ -1,6 +1,7 @@
 <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img class="animation__shake" src="/backend/dist/img/Dino.jpg" alt="AdminLTELogo" height="70" width="70">
+    <h1>Hello, {{ auth()->user()->name }}</h1>
   </div>
 <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -14,6 +15,14 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">Contact</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <form method="post" action="{{ route('auth.logout') }}">
+          @csrf
+          <button  class="btn text-secondary" onclick="this.closet('form').submit(); return false;">
+            Logout
+          </button>
+        </form>
       </li>
     </ul>
 

@@ -1,8 +1,8 @@
-@extends('backend.layouts.auth')
+@extends('auth.auth_layout')
 @section('content')
 <div class="register-box">
     <div class="register-logo">
-      <a href="/backend/index2.html"><b>Admin</b>LTE</a>
+      <a href="/backend/index2.html" class="text-white"><b>Admin</b>LTE</a>
     </div>
   
     <div class="card">

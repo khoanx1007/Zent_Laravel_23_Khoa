@@ -15,13 +15,12 @@ use Illuminate\Support\Facades\App;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('a',function(){
-    \Illuminate\Support\Facades\Log::error('Test Error');
-    \Illuminate\Support\Facades\Log::info('Test Info 2');
-    return view('form');
-})->name('home');
+Route::get('/',function(){
+    return view('frontend/main/index');
+    })->name('home');
 Route::prefix('backend')
     ->name('backend.')
+    ->middleware('auth')
     ->namespace('Backend')
     ->group(function(){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -43,4 +42,12 @@ Route::prefix('backend')
             ->name('register');
             Route::post('/register','RegisteredUserController@store')
             ->middleware('guest');
+            Route::get('/login', 'LoginController@create')
+            ->middleware('guest')
+            ->name('login');
+            Route::post('/login', 'LoginController@authenticate')
+            ->middleware('guest')
+            ->name('login');
+            Route::post('/logout', 'LoginController@logout')
+            ->name('logout');
         });

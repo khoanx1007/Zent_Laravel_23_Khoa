@@ -13,7 +13,9 @@
             <img src="/backend/dist/img/khoa.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Nguyễn Xuân Khoa</a>
+            <a href="#" class="d-block">
+              {{ auth()->user()->name }}
+            </a>
           </div>
         </div>
 
