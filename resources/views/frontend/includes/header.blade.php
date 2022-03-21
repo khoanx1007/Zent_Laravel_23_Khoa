@@ -44,11 +44,16 @@ NAVBAR
 					</li>
 					@else
 						<li class="nav-item">
-							<span>{{ auth()->user()->name }}</span>
+							<span>Hello, <b onclick="myFunction()" class="drop" style="cursor: pointer;">{{ auth()->user()->name }}</b></span>
 						</li>
-						<li class="nav-item pl-2">
-							<img src="/backend/dist/img/khoa.jpg" class="imagebg" alt="User Image" style="width:20%; border-radius:50%;">
-						</li>
+						<div class="dropdown-content" id="myDropdown">
+							<form method="post" action="{{ route('auth.logout') }}">
+								@csrf
+								<button  class="btn bg-white p-1 font-weight-bold text-warning" onclick="this.closet('form').submit(); return false;">
+								  Logout
+								</button>
+							  </form>
+						</div>
 				@endguest
 			</ul>
 		</div>

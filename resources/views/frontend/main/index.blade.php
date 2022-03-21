@@ -1,6 +1,6 @@
 @extends('frontend.layouts.client');
 @section('content')
-	<div class="container">
+		<div class="container">
 		<h1 class="secondfont font-weight-bold">Recent Post</h1>
 	</div>
 	<div class="container pt-4 pb-4">

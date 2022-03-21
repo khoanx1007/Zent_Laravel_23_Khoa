@@ -1,5 +1,7 @@
 @extends('frontend.layouts.client');
 @section('content')
+	<div>
+	</div>
 	<div class="container mt-5 mb-5">
 		<div class="row">
 			<div class="col-md-8">

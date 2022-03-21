@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Main CSS -->
 <link href="/frontend/assets/css/main.css" rel="stylesheet"/>
+<link href="/frontend/assets/css/app.css" rel="stylesheet"/>
 </head>
 <body>	
 <!--------------------------------------
@@ -38,5 +39,22 @@ JAVASCRIPTS
 <script src="frontend/assets/js/vendor/popper.min.js" type="text/javascript"></script>
 <script src="frontend/assets/js/vendor/bootstrap.min.js" type="text/javascript"></script>
 <script src="frontend/assets/js/functions.js" type="text/javascript"></script>
+<script>
+    function myFunction() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+    window.onclick = function(event) {
+      if (!event.target.matches('.drop')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+</script>
 </body>
 </html>
