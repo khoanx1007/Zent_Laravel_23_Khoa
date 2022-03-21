@@ -9,7 +9,7 @@
       <div class="card-body register-card-body">
         <p class="login-box-msg">Đăng kí thành viên</p>
   
-        <form action="{{ route('auth.register') }}" method="post">
+        <form action="{{ route('auth.register') }}" method="POST">
           @csrf
             <div class="input-group mb-3">
             <input type="text" name="name" class="form-control" placeholder="Full name">

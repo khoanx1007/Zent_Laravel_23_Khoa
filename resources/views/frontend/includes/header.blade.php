@@ -35,12 +35,21 @@ NAVBAR
 				</li>
 			</ul>
 			<ul class="navbar-nav ml-auto d-flex align-items-center">
-				<li class="nav-item">
-				<a class="nav-link text-cyan font-weight-bold" href="https://www.wowthemes.net/mundana-free-html-bootstrap-template/">Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link text-success font-weight-bold" href="https://www.wowthemes.net/mundana-free-html-bootstrap-template/">Register</a>
-				</li>
+				@guest
+					<li class="nav-item">
+						<a class="nav-link text-cyan font-weight-bold" href="{{ route('auth.login') }}">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-success font-weight-bold" href="{{ route('auth.register') }}">Register</a>
+					</li>
+					@else
+						<li class="nav-item">
+							<span>{{ auth()->user()->name }}</span>
+						</li>
+						<li class="nav-item pl-2">
+							<img src="/backend/dist/img/khoa.jpg" class="imagebg" alt="User Image" style="width:20%; border-radius:50%;">
+						</li>
+				@endguest
 			</ul>
 		</div>
 	</div>

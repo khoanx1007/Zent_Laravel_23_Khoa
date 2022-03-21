@@ -34,7 +34,7 @@ Route::prefix('backend')
         'categories' => CategoryController::class,
     ]); 
 });
-    Route::prefix('/')
+Route::prefix('/')
         ->namespace('Auth')
         ->name('auth.')->group(function(){
             Route::get('/register', 'RegisteredUserController@create')
@@ -51,3 +51,4 @@ Route::prefix('backend')
             Route::post('/logout', 'LoginController@logout')
             ->name('logout');
         });
+    
