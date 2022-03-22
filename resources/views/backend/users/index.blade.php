@@ -49,8 +49,7 @@ Danh sách User
                         <th>Tên User</th>
                         <th>Email</th>
                         <th>Trạng thái</th>
-                        <th>Địa chỉ</th>
-                        <th>Số ĐT</th>
+                        <th>Vai trò</th>
                         <th>Ngày tạo</th>
                       </tr>
                     </thead>
@@ -61,8 +60,7 @@ Danh sách User
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td><span class="text-success">Chấp thuận</span></td>
-                        <td>{{$user->userInfo->address}}</span></td>
-                        <td>{{$user->userInfo->phone}}</span></td>
+                        <td>{{$user->role}}</span></td>
                         <td>
                           <a href="{{route('backend.users.show',$user->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                           <a href="{{route('backend.users.edit',$user->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>

@@ -20,7 +20,7 @@ Route::get('/',function(){
     })->name('home');
 Route::prefix('backend')
     ->name('backend.')
-    ->middleware('auth')
+    ->middleware(['auth', 'role:admin,admod'])
     ->namespace('Backend')
     ->group(function(){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
@@ -29,10 +29,16 @@ Route::prefix('backend')
     Route::get('/categories/recycle', 'CategoryController@index2')->name('categories.index2');  
     Route::get('/categories/recycle/{user}','CategoryController@restore')->name('categories.restore');
     Route::resources([
-        'posts' => PostController::class,
         'users' => UserController::class,
         'categories' => CategoryController::class,
     ]); 
+    // Route::post('posts/{post}', 'PostController@update')
+    // ->middleware('can:update.post')
+    // ->name('posts.update');
+    Route::resource('posts', PostController::class)
+    ->except([
+        // 'update'
+    ]);
 });
 Route::prefix('/')
         ->namespace('Auth')

@@ -17,6 +17,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class,'post');
+    }
     public function index()
     {
         $title=\request()->get('title');
@@ -60,6 +64,9 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        if ($request->user()->cannot('create',Post::class)){
+            abort(403);
+        }
         if(Post::get('title')==null){
                 return redirect()->back();
         }
@@ -94,6 +101,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        
         $tags = Tag::get();
         $categories = Category::get(); 
         return view('backend.posts.edit')->with([
@@ -112,6 +120,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $post = Post::find($id);
+        // if ($request->user()->cannot('create',Post::class)){
+        //     abort(403);
+        // }
         if($request->get('title')==null){
                 return redirect()->back();
         }
