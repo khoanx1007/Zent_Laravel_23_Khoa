@@ -17,10 +17,6 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->authorizeResource(Post::class,'post');
-    }
     public function index()
     {
         $title=\request()->get('title');
@@ -120,10 +116,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $post = Post::find($id);
+        $post = Post::find($id);
         // if ($request->user()->cannot('create',Post::class)){
         //     abort(403);
         // }
+        
         if($request->get('title')==null){
                 return redirect()->back();
         }

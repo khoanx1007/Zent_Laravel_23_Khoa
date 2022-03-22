@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -120,6 +121,11 @@ class UserController extends Controller
     }   
     public function destroy($id)
     {
+        
+        $user=User::find($id);
+        if (! Gate::allows('delete-user',$user)){
+            abort(403);
+        }
         User::destroy($id);
         return redirect()->route('backend.users.index');
     }
