@@ -65,20 +65,27 @@ Danh sách Blog
                         <td>{{$post->category->name}}</td>
                         <td>{{$post->status_text}}</td>
                         <td>
-                          @foreach($post->tags as $tag)
-                            <span class="badge badge-info">{{ $tag->name }}</span>
-                          @endforeach
-                        </td>
+                            @foreach($post->tags as $tag)
+                              <span class="badge badge-info">{{ $tag->name }}</span>
+                            @endforeach
+                          </td>
                         <td>{{$post->user->name}}</td>
                         <td>{{$post->created_at}}</td>
                         <td>
                           <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
-                          <a href="{{route('backend.posts.edit',$post->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
-                          <form method="POST" action="{{route('backend.posts.destroy',$post->id) }}">
-                            @csrf
-                            @method('DELETE')
-                            <button  class="btn btn-danger"><i class="fas fa-trash"></i></button>  
-                          </form>                       
+                          
+                          @can('update',$post)
+                            <a href="{{route('backend.posts.edit',$post->id) }}"  class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                          @endcan
+
+
+                          @can('delete',$post)
+                            <form method="POST" action="{{route('backend.posts.destroy',$post->id) }}">
+                              @csrf
+                              @method('DELETE')
+                              <button  class="btn btn-danger"><i class="fas fa-trash"></i></button>  
+                            </form>     
+                          @endcan           
                         </td>
                       </tr>
                     @endforeach

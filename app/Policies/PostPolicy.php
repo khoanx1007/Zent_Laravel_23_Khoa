@@ -53,7 +53,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_created_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        return $user->id === $post->user_id;
+        return $user->id === $post->user_created_id;
     }
 
     /**
@@ -77,7 +77,7 @@ class PostPolicy
      */
     public function restore(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_created_id;
     }
 
     /**
@@ -89,6 +89,6 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_created_id;
     }
 }

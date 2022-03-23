@@ -17,6 +17,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Post::class,'post');
+    // }
     public function index()
     {
         $title=\request()->get('title');
@@ -50,6 +54,7 @@ class PostController extends Controller
 
     public function create()
     {
+
         $tags=Tag::get();
         $categories=Category::get();
         return view('backend.posts.create',[
@@ -96,8 +101,8 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $post = Post::find($id);
         
+        $post = Post::find($id);
         $tags = Tag::get();
         $categories = Category::get(); 
         return view('backend.posts.edit')->with([
@@ -114,13 +119,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::find($id);
+        //$post = Post::find($id);
         // if ($request->user()->cannot('create',Post::class)){
         //     abort(403);
         // }
-        
         if($request->get('title')==null){
                 return redirect()->back();
         }
@@ -129,7 +133,6 @@ class PostController extends Controller
             $data = $request->only(['title','content']);
             $tags = $request->get('tags');
             $category_id = $request->get('category');
-            $post = Post::find($id);
             $post->title = $data['title'];
             $post->user_created_id=1;
             $post->content = $data['content'];
