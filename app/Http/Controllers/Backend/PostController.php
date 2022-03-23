@@ -7,20 +7,29 @@ use App\Models\Tag;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     /**
+     * Create a controller instance.
+     *
+     * @return void
+     */
+
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class,'post');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    // public function __construct()
-    // {
-    //     $this->authorizeResource(Post::class,'post');
-    // }
+    
     public function index()
     {
         $title=\request()->get('title');
