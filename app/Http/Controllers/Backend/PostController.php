@@ -134,6 +134,7 @@ class PostController extends Controller
         // if ($request->user()->cannot('create',Post::class)){
         //     abort(403);
         // }
+        $this->authorize('update',$post);
         if($request->get('title')==null){
                 return redirect()->back();
         }
