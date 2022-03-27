@@ -25,21 +25,25 @@ class StorePostRequest extends FormRequest
     {
         return [    
             'title' => 'required|unique:posts|min:20|max:255',
-            'content' => 'required'
+            'content' => 'required',
+            'status' => 'required|digits:0,1'
         ];
     }
     public function messages()
     {
         return[
-            'required' => 'Phần :attribute không được để trống',
-            'min' => 'Phần :attribute tiêu đề cần ít nhất 20 kí tự ',
+            'digits'=>':attribute không nằm trong danh sách có sẵn',
+            'unique' => ':attribute đã tồn tại',
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute tiêu đề cần ít nhất 20 kí tự ',
         ];
     }
     public function attributes()
     {
         return[
-            'title'=>'tiêu đề',
-            'content'=>'nội dung'
+            'status'=>'Tình trạng',
+            'title'=>'Tiêu đề',
+            'content'=>'Nội dung'
         ];
     }
 }

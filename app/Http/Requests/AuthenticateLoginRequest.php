@@ -25,7 +25,7 @@ class AuthenticateLoginRequest extends FormRequest
     {
         return [    
             'email' => 'required|email',
-            'password' => 'required|password'
+            'password' => 'required'
         ];
     }
     public function messages()
@@ -34,7 +34,6 @@ class AuthenticateLoginRequest extends FormRequest
             'email'=>':attribute đúng định dạng',
             'required' => ':attribute không được để trống',
             'min' => ':attribute cần ít nhất 8 kí tự ',
-            'password'=>'Mật khẩu không chính xác'
         ];
     }
     public function attributes()

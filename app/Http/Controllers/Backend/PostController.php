@@ -76,27 +76,27 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
             // $validator =$request->validate([
             //     'title' => 'required|unique:posts|min:20|max:255',
             //     'content' => 'required'
             // ]);
-            $validator = Validator::make($request->all(),[
-                'title' => 'required|unique:posts|min:20|max:255',
-                 'content' => 'required'
-            ],
-            [
-               'title.required' => 'Phần tiêu đề không được để trống',
-               'title.min' => 'Phần tiêu đề cần ít nhất 20 kí tự ',
-               'content.required' => 'Phần nội dung không được để trống'  
-            ]
-            );
-            if ($validator->fails()){
-                return redirect('backend/posts/create')
-                ->withErrors($validator)
-                ->withInput();
-            }
+            // $validator = Validator::make($request->all(),[
+            //     'title' => 'required|unique:posts|min:20|max:255',
+            //      'content' => 'required'
+            // ],
+            // [
+            //    'title.required' => 'Phần tiêu đề không được để trống',
+            //    'title.min' => 'Phần tiêu đề cần ít nhất 20 kí tự ',
+            //    'content.required' => 'Phần nội dung không được để trống'  
+            // ]
+            // );
+            // if ($validator->fails()){
+            //     return redirect('backend/posts/create')
+            //     ->withErrors($validator)
+            //     ->withInput();
+            // }
             $tags = $request->get('tags');
             $category = $request->get('category');
             $data = $request->only(['title','content']);

@@ -45,7 +45,12 @@ Tạo Blog
                                 @endforeach
                             </select>
                         </div>
-                          
+                        <div class="form-group">
+                          <label>Status</label>
+                          <input type="text" name="status" value="{{ old('status') }}" class="form-control @error('status') is-invalid @enderror " placeholder="Enter..." >
+                          @error('status')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
                         </div>
                       </div>
                       <!-- /.card-body -->
