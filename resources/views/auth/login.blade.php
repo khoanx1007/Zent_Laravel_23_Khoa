@@ -3,7 +3,7 @@
 @section('content')
 <div class="login-box">
     <div class="login-logo">
-      <a href="../../index2.html "class="text-white"><b>Admin</b>LTE</a>
+      <a href="../../index2.html "class="text-white"><b>Đăng nhập</b></a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -11,22 +11,21 @@
         <p class="login-box-msg">Sign in to start your session</p>
   
         <form action="{{ route('auth.login')}}" method="post">
-            @csrf
-          <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
+          @csrf
+          <div class="form-group mb-2">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="Nhập Email.." value="{{ old('email') }}">
+            @error('email')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
           </div>
-          <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+          
+          <div class="form-group mb-2">
+            <label>Mật khẩu:</label>
+            <input type="password" name="password" class="form-control" placeholder="Nhập mật khẩu.. " value="{{ old('password') }}">
+            @error('password')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
           </div>
           <div class="row">
             <div class="col-8">
@@ -60,7 +59,7 @@
           <a href="forgot-password.html">I forgot my password</a>
         </p>
         <p class="mb-0">
-          <a href="register.html" class="text-center">Register a new membership</a>
+          <a href="{{ route('auth.register') }}" class="text-center">Register a new membership</a>
         </p>
       </div>
       <!-- /.login-card-body -->

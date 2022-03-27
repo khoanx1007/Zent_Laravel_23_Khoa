@@ -11,37 +11,30 @@
   
         <form action="{{ route('auth.register') }}" method="POST">
           @csrf
-            <div class="input-group mb-3">
-            <input type="text" name="name" class="form-control" placeholder="Full name">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
-            </div>
+          <div class="form-group mb-2">
+            <label>Tên:</label>
+            <input type="text" name="name" class="form-control @error('name') is-invalid  @enderror" placeholder="Nhập Tên.." value="{{ old('name') }}">
+            @error('name')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
           </div>
-          <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control" placeholder="Email">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
+          <div class="form-group mb-2">
+            <label>Email:</label>
+            <input type="email" name="email" class="form-control @error('email') is-invalid  @enderror" placeholder="Nhập Email.." value="{{ old('email') }}">
+            @error('email')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
           </div>
-          <div class="input-group mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
+          <div class="form-group mb-2">
+            <label>Mật khẩu:</label>
+            <input type="password" name="password" class="form-control @error('password') is-invalid  @enderror" placeholder="Nhập mật khẩu.. " value="{{ old('password') }}">
+            @error('password')
+              <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
           </div>
-          <div class="input-group mb-3">
+          <div class="form-group mb-3">
+            <label>Nhập lại mật khẩu:</label>
             <input type="password" name="password_confirmation" class="form-control" placeholder="Retype password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
           </div>
           <div class="row">
             <div class="col-8">
