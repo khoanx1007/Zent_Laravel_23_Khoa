@@ -14,11 +14,17 @@ Chỉnh sửa Blog
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên bài viết</label>
-                    <input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="Enter..." value="{{ $post->title }}">
+                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1" placeholder="Enter..." value="@error('title'){{ old('title') }} @else{{ $post->title }}  @enderror" >
+                    @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
                     <label>Content</label>
-                    <textarea id="editor" class="form-control" name='content' value="">{{ $post->content }}</textarea>
+                    <textarea id="editor" class="form-control @error('content') is-invalid @enderror" name='content' value="">{{ $post->content }}</textarea>
+                    @error('content')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group col-12" >
                       <label>Danh mục</label>
@@ -45,7 +51,7 @@ Chỉnh sửa Blog
                                 }
                               @endphp
                             @endforeach
-                            <option value="{{$item->id}}" {{ $selected }}>{{$item->name}}</option>
+                            <option value="{{$item->id}}" {{ $selected }}>{{$item->name}} </option>
                           @endforeach
                         </select>
                   </div>  

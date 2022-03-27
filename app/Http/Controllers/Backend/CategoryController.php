@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('id','desc')->paginate(3);
+        $categories = Category::orderBy('id','desc')->get();
         return view('backend.categories.index')->with([
             'categories'=>$categories
         ]);
@@ -45,21 +46,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        if($request->get('name')==null){
-            return redirect()->back();
-    }
-    else
-    {
+    public function store(Request $request){
+        $validated =$request->validate([
+            'name' => 'required|unique:categories|max:20',
+            'content' => 'required'
+        ]);
         $data = $request->only(['name','content']);
         $category = Category::create([
             'name' => $data['name'],
-            //'slug' => Str::slug($data['name']),
             'content'=> $data['content'],
         ]);
         return redirect()->route('backend.categories.index');
-    }
     }
 
     /**
@@ -91,18 +88,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->get('name')==null){
-            return redirect()->back();
-    }
-    else
-    {
+        $validated =$request->validate([
+            'name' => 'required|unique:categories|max:20',
+            'content' => 'required'
+        ]);
         $data = $request->only(['name','content']);
         $category = Category::find($id);
         $category->name = $data['name'];
         $category->content = $data['content'];
         $category->save();
         return redirect()->route('backend.categories.index');
-    }
     }
     public function destroy($id)
     {

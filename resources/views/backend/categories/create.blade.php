@@ -14,11 +14,17 @@ Tạo Blog
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên danh mục</label>
-                    <input type="text" name="name" class="form-control" id="exampleInputEmail1" placeholder="Enter...">
+                    <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1" placeholder="Enter...">
+                    @error('name')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   <div class="form-group">
                     <label>Mô tả</label>
-                    <textarea id="editor" name="content" class="form-control"></textarea>
+                    <textarea id="editor" name="content" class="form-control @error('content') is-invalid @enderror"></textarea>
+                    @error('content')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                   </div>
                   </div>
                 </div>

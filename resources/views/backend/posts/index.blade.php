@@ -27,7 +27,9 @@ Danh sách Blog
               <div class="card">
                 <!-- /.card-header -->
                 <div class="card-header">
-                  <a href="{{route('backend.posts.create') }}"  class="btn btn-success"><i class="fas fa-plus"></i></a>
+                  @can('create-post', App\Models\Post::class)
+                    <a href="{{route('backend.posts.create') }}"  class="btn btn-success"><i class="fas fa-plus"></i></a>
+                  @endcan
                   <div class="card-tools">
                     <form>
                       <div class="input-group input-group-md" style="width: 400px;">
@@ -50,7 +52,7 @@ Danh sách Blog
                         <th>Danh mục</th>
                         <th>Tình Trạng</th>
                         <th>Tag</th>
-                        <th>Nguời tạo</th>
+                        {{-- <th>Nguời tạo</th> --}}
                         <th>Ngày tạo</th>
                         <th>Thao tác</th>
                       </tr>
@@ -69,17 +71,15 @@ Danh sách Blog
                               <span class="badge badge-info">{{ $tag->name }}</span>
                             @endforeach
                           </td>
-                        <td>{{$post->user->name}}</td>
+                        {{-- <td>{{$post->user->name}}</td> --}}
                         <td>{{$post->created_at}}</td>
                         <td>
                           <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                           
-                          @can('update',$post)
+                          @can('update-post',$post)
                             <a href="{{route('backend.posts.edit',$post->id) }}"  class="btn btn-primary"><i class="fas fa-edit"></i></a>
                           @endcan
-
-
-                          @can('delete',$post)
+                          @can('delete-post',$post)
                             <form method="POST" action="{{route('backend.posts.destroy',$post->id) }}">
                               @csrf
                               @method('DELETE')

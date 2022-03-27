@@ -1,5 +1,4 @@
 <?php
-
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
@@ -15,9 +14,9 @@ use Illuminate\Support\Facades\App;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/',function(){
-    return view('frontend/main/index');
-    })->name('home');
+Route::get('/',function(){ 
+    return view('frontend.main.index');
+    });
 Route::prefix('backend')
     ->name('backend.')
     ->middleware(['auth', 'role:admin,admod,writer'])
@@ -29,17 +28,18 @@ Route::prefix('backend')
     Route::get('/categories/recycle', 'CategoryController@index2')->name('categories.index2');  
     Route::get('/categories/recycle/{user}','CategoryController@restore')->name('categories.restore');
     Route::resources([
-        'posts' => PostController::class,
+        'roles' => RoleController::class,
+        // 'posts' => PostController::class,
         'users' => UserController::class,
         'categories' => CategoryController::class,
     ]); 
-    // Route::post('posts/{post}', 'PostController@update')
+    Route::get('posts/{post}/edit', 'PostController@edit')
     // ->middleware('can:update.post')
-    // ->name('posts.update');
-    // Route::resource('posts', PostController::class)
-    // ->except([
-    //     // 'update'
-    // ]);
+    ->name('posts.edit');
+    Route::resource('posts', PostController::class)
+    ->except([
+         'edit'
+    ]);
 });
 Route::prefix('/')
         ->namespace('Auth')

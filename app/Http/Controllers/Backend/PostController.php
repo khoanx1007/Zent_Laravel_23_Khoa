@@ -5,10 +5,11 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Tag;
 use App\Models\Category;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Gate;
+use App\Http\Requests\StorePostRequest;
+// use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Str;
+// use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -20,10 +21,10 @@ class PostController extends Controller
      * @return void
      */
 
-    public function __construct()
-    {
-        $this->authorizeResource(Post::class,'post');
-    }
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Post::class,'post');
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -40,9 +41,8 @@ class PostController extends Controller
         }
         if (!empty($status)){
             $posts_query = $posts_query->where('status',"LIKE","%$status%");   
-
         }
-        $posts =$posts_query->paginate(5);
+        $posts =$posts_query->paginate(7);
         return view('backend.posts.index')->with([
             'posts'=>$posts
         ]);
@@ -55,9 +55,13 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        $tags=Tag::get();
+        $categories=Category::get();
         $post=Post::with('user','category','tags')->find($id);
         return view('backend.posts.show',[
-            'post' => $post
+            'post' => $post,
+            'tags' => $tags,
+            'categories' => $categories
         ]);
     }
 
@@ -74,44 +78,44 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        if ($request->user()->cannot('create',Post::class)){
-            abort(403);
-        }
-        if(Post::get('title')==null){
-                return redirect()->back();
-        }
-        else
-        {
+            // $validator =$request->validate([
+            //     'title' => 'required|unique:posts|min:20|max:255',
+            //     'content' => 'required'
+            // ]);
+            $validator = Validator::make($request->all(),[
+                'title' => 'required|unique:posts|min:20|max:255',
+                 'content' => 'required'
+            ],
+            [
+               'title.required' => 'Phần tiêu đề không được để trống',
+               'title.min' => 'Phần tiêu đề cần ít nhất 20 kí tự ',
+               'content.required' => 'Phần nội dung không được để trống'  
+            ]
+            );
+            if ($validator->fails()){
+                return redirect('backend/posts/create')
+                ->withErrors($validator)
+                ->withInput();
+            }
             $tags = $request->get('tags');
             $category = $request->get('category');
             $data = $request->only(['title','content']);
             $post = new Post();
             $post->title = $data['title'];
-            // $post->slug = Str::slug($data['title']);
-            // $post->slug = $data['title'];
             $post->category_id = $category;
             $post->content = $data['content'];
+            $post->status = '1';
             $post->save(); 
             $user = User::find(1);
-            
-            $user-> posts()->save($post);
-            // $post->posts()->save($post);
-            $post->tags()->attach($tags);
-            // $post = Post::create([
-            //     'title' => $data['title'],
-            //     //'slug' => Str::slug($data['title']),
-            //     'content'=> $data['content'],
-            //     'user_created_id'=> 1,
-            // ]);
-            
+            $user->posts()->save($post);
+            $post->tags()->attach($tags);       
             return redirect()->route('backend.posts.index');
-        }
     }
 
-    public function edit($id)
+    public function edit(Post $post)
     {
         
-        $post = Post::find($id);
+        // $post = Post::find($id);
         $tags = Tag::get();
         $categories = Category::get(); 
         return view('backend.posts.edit')->with([
@@ -134,23 +138,31 @@ class PostController extends Controller
         // if ($request->user()->cannot('create',Post::class)){
         //     abort(403);
         // }
-        $this->authorize('update',$post);
-        if($request->get('title')==null){
-                return redirect()->back();
+        $validator = Validator::make($request->all(),[
+            'title' => 'required|unique:posts|min:20|max:255',
+             'content' => 'required'
+        ],
+        [
+           'title.required' => 'Phần tiêu đề không được để trống',
+           'title.min' => 'Phần tiêu đề cần ít nhất 20 kí tự ',
+           'content.required' => 'Phần nội dung không được để trống'  
+        ]
+        );
+        if ($validator->fails()){
+            return redirect()->back()
+            ->withErrors($validator)
+            ->withInput();
         }
-        else
-        {
-            $data = $request->only(['title','content']);
-            $tags = $request->get('tags');
-            $category_id = $request->get('category');
-            $post->title = $data['title'];
-            $post->user_created_id=1;
-            $post->content = $data['content'];
-            $post->tags()->sync($tags);
-            $post->category_id = $category_id;
-            $post->save();
-            return redirect()->route('backend.posts.index');
-        }
+        $data = $request->only(['title','content']);
+        $tags = $request->get('tags');
+        $category_id = $request->get('category');
+        $post->title = $data['title'];
+        $post->user_created_id=1;
+        $post->content = $data['content'];
+        $post->tags()->sync($tags);
+        $post->category_id = $category_id;
+        $post->save();
+        return redirect()->route('backend.posts.index');
     }
     public function destroy($id)
     {

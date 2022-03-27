@@ -29,7 +29,8 @@
     text-decoration: none;
     display: block;
   }
-  
-
-  
   .show {display: block;}
+  .admint :hover{
+    box-shadow: 0px 0px 0px 0px;
+    background-color: white;
+   }

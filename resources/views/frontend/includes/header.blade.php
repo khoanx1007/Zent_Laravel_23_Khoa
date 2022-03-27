@@ -9,30 +9,11 @@ NAVBAR
 		</button>
 		<div class="navbar-collapse collapse" id="navbarColor02" style="">
 			<ul class="navbar-nav mr-auto d-flex align-items-center">
-				<li class="nav-item">
-				<a class="nav-link" href="./index.html">Intro <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./article.html">Culture</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./article.html">Tech</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./article.html">Politics</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./article.html">Health</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./article.html">Collections</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./about.html">About</a>
-				</li>
-				<li class="nav-item">
-				<a class="nav-link" href="./docs.html">Template <span class="badge badge-secondary">docs</span></a>
-				</li>
+				@foreach ($categories as $category )
+					<li class="nav-item">
+						<a class="nav-link" href="./docs.html"> {{ $category->name 	}}</a>
+					</li>
+				@endforeach
 			</ul>
 			<ul class="navbar-nav ml-auto d-flex align-items-center">
 				@guest
@@ -47,6 +28,9 @@ NAVBAR
 							<span>Hello, <b onclick="myFunction()" class="drop" style="cursor: pointer;">{{ auth()->user()->name }}</b></span>
 						</li>
 						<div class="dropdown-content" id="myDropdown">
+							<a href="{{ route('backend.dashboard') }}" class="bg-white p-1 mt-5 font-weight-bold text-success" style="cursor: pointer;" onclick="this.closet('form').submit(); return false;">
+								Backend
+							</a>
 							<form method="post" action="{{ route('auth.logout') }}">
 								@csrf
 								<button  class="btn bg-white p-1 font-weight-bold text-warning" onclick="this.closet('form').submit(); return false;">

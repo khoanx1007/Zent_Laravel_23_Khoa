@@ -73,7 +73,6 @@ Danh sách danh mục
                       @endforeach
                     </tbody>
                   </table>
-                  {{$categories->links()}}
                 </div>
                 <!-- /.card-body -->
               </div>
