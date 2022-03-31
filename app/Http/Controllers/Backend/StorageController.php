@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage; 
 use App\Http\Controllers\Controller;
 class StorageController extends Controller
 {
@@ -13,7 +15,10 @@ class StorageController extends Controller
      */
     public function index()
     {
-        return view('backend.storage');
+        $files=Storage::allFiles('public');
+        return view('backend.storage')->with([
+            'files' => $files
+        ]);
     }
 
     /**

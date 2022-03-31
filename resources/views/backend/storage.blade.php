@@ -33,10 +33,12 @@ Dashboard
                   Thư viện ảnh
                 </h3>
               </div><!-- /.card-header -->
-              <div class="card-body">
+              <div class="card-body">  
                 <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                </div>
+                  @foreach ($files as $file )
+                      <img width="200px" height="200px" src="{{ Illuminate\Support\Facades\Storage::disk()->url($file) }}" style="position: relative;">
+                  @endforeach
+                </div>          
               </div><!-- /.card-body -->
             </div>
             <!-- /.card -->

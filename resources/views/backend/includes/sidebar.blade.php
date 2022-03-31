@@ -43,12 +43,15 @@
                   Dashboard
                   </p>
               </a>
-              <a href="{{route('backend.storage') }}" class="nav-link @if (request()->is('backend/storage')) active @endif ">
-                <i class="nav-icon far fa-folder"></i>
-                <p>
-                Storage
-                </p>
-            </a>
+              
+              </li>
+              <li class="nav-item">
+                <a href="{{route('backend.storage') }}" class="nav-link @if (request()->is('backend/storage')) active @endif ">
+                  <i class="nav-icon far fa-folder"></i>
+                  <p>
+                  Storage
+                  </p>
+                </a>
               </li>
             <li class="nav-header">Quản lý chung</li>
             <li class="nav-item @if (request()->routeIs('backend.categories.*')) menu-open @endif">

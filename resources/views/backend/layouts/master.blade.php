@@ -10,6 +10,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="/backend/plugins/fontawesome-free/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
@@ -20,6 +21,7 @@
   <link rel="stylesheet" href="/backend/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/backend/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="/backend/dist/css/app.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Daterange picker -->
