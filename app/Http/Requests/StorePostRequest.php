@@ -26,7 +26,7 @@ class StorePostRequest extends FormRequest
         return [    
             'title' => 'required|unique:posts|min:20|max:255',
             'content' => 'required',
-            'status' => 'required|digits:0,1'
+            // 'status' => 'required|digits:'
         ];
     }
     public function messages()

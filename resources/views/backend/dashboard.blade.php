@@ -34,7 +34,7 @@ Dashboard
               </div>
               <a href="#" class="small-box-footer">Xem thêm <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div>  
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->

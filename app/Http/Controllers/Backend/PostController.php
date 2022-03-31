@@ -101,13 +101,19 @@ class PostController extends Controller
             $category = $request->get('category');
             $data = $request->only(['title','content']);
             $post = new Post();
+            if($request->hasFile('image')){
+                $disk='public';
+                $path= $request->file('image')->store('images',$disk);
+                $post->disk=$disk;
+                $post->image=$path;   
+            }
             $post->title = $data['title'];
             $post->category_id = $category;
             $post->content = $data['content'];
             $post->status = '1';
             $post->save(); 
-            $user = User::find(1);
-            $user->posts()->save($post);
+            // $user = User::find(1);
+            // $user->posts()->save($post);
             $post->tags()->attach($tags);       
             return redirect()->route('backend.posts.index');
     }
@@ -139,7 +145,7 @@ class PostController extends Controller
         //     abort(403);
         // }
         $validator = Validator::make($request->all(),[
-            'title' => 'required|unique:posts|min:20|max:255',
+            'title' => 'required|min:20|max:255',
              'content' => 'required'
         ],
         [
@@ -155,9 +161,14 @@ class PostController extends Controller
         }
         $data = $request->only(['title','content']);
         $tags = $request->get('tags');
+        if($request->hasFile('image')){
+            $disk='public';
+            $path= $request->file('image')->store('images',$disk);
+            $post->disk=$disk;
+            $post->image=$path;   
+        }
         $category_id = $request->get('category');
         $post->title = $data['title'];
-        $post->user_created_id=1;
         $post->content = $data['content'];
         $post->tags()->sync($tags);
         $post->category_id = $category_id;

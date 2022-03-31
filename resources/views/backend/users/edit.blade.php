@@ -24,15 +24,17 @@ Chỉnh sửa User
                     <label for="exampleInputEmail1">Password</label>
                     <input type="text" name="password" class="form-control" value="{{$user->password}}" placeholder="Nhập mật khẩu...">
                   </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File Ảnh</label>
+                  <div class="form-group" >
+                    <label for="exampleInputFile">Hình nền</label>
+                    <p><img src="{{ Illuminate\Support\Facades\Storage::disk($user->disk)->url($user->image) }}" width="100px"></p>
                     <div class="input-group">
+
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
+                        <input type="file" class="custom-file-input" name="image">
+                        <label class="custom-file-label" for="emxampleInputFile">Chọn Ảnh</label>
                       </div>
                       <div class="input-group-append">
-                        <span class="input-group-text">Chỉnh sửa</span>
+                        <span class="input-group-text">Tải lên</span>
                       </div>
                     </div>
                   </div>

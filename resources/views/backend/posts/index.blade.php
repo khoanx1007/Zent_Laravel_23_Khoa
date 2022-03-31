@@ -49,6 +49,7 @@ Danh sách Blog
                       <tr class="bg-dark" aria-expanded="false">
                         <th>ID</th>
                         <th>Tên bài viết</th>
+                        <th>Ảnh bìa</th>
                         <th>Danh mục</th>
                         <th>Tình Trạng</th>
                         <th>Tag</th>
@@ -63,6 +64,12 @@ Danh sách Blog
                         <td>{{$post->id}}</td>
                         <td class="text-primary" style="max-width:80px;" >{{$post->title}}
                         <p class="text-dark">Slug: {{$post->slug}}</p>
+                        </td>
+                        <td>
+                          @if (!empty($post->image))
+                              <img src="{{ Illuminate\Support\Facades\Storage::disk($post->disk)->url($post->image) }}" width="100px">
+                            
+                          @endif
                         </td>
                         <td>{{$post->category->name}}</td>
                         <td>{{$post->status_text}}</td>

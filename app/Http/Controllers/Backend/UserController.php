@@ -78,11 +78,19 @@ class UserController extends Controller
         else
         {
             $data = $request->only(['name','email','password']);
-            User::insert([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => $data['password']
-            ]);
+            
+            $user = new User();
+            if($request->hasFile('image')){
+                $disk='public';
+                $path= $request->file('image')->store('avatars',$disk);
+                $user->disk=$disk;
+                $user->image=$path;   
+            }
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->password = $data['password'];
+            $user->status = '1';
+            $user->save(); 
             return redirect()->route('backend.users.index');
         }
     }
@@ -104,20 +112,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->get('title')==null){
-            return redirect()->back();
-    }
-    else
-    {
-        $data = $request->only(['name','email','password']);
-        User::where('id',$id)
-            ->update([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => $data['password'],
-        ]);
+        $data = $request->all();
+        $user=User::find($id);
+        if($request->hasFile('image')){
+            $disk='public';
+            $path= $request->file('image')->store('avatars',$disk);
+            $user->disk=$disk;
+            $user->image=$path;   
+        }
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+        $user->save();
         return redirect()->route('backend.users.index');
-    }
     }   
     public function destroy($id)
     {

@@ -55,6 +55,20 @@ Chỉnh sửa Blog
                           @endforeach
                         </select>
                   </div>  
+                  <div class="form-group" >
+                    <label for="exampleInputFile">Hình nền</label>
+                    <p><img src="{{ Illuminate\Support\Facades\Storage::disk($post->disk)->url($post->image) }}" width="100px"></p>
+                    <div class="input-group">
+
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="image">
+                        <label class="custom-file-label" for="emxampleInputFile">Chọn Ảnh</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Tải lên</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <!-- /.card-body -->
 

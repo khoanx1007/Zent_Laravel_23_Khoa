@@ -23,6 +23,7 @@ Route::prefix('backend')
     ->namespace('Backend')
     ->group(function(){
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+    Route::get('/storage', 'StorageController@index')->name('storage');
     Route::get('/users/recycle', 'UserController@index2')->name('users.index2');  
     Route::get('/users/recycle/{user}','UserController@restore')->name('users.restore');
     Route::get('/categories/recycle', 'CategoryController@index2')->name('categories.index2');  

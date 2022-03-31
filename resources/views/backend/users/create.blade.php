@@ -28,7 +28,7 @@ Tạo User
                     <label for="exampleInputFile">File Ảnh</label>
                     <div class="input-group">
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
+                        <input type="file" class="custom-file-input" name="image" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Chọn file</label>
                       </div>
                       <div class="input-group-append">

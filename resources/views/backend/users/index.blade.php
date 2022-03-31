@@ -47,6 +47,7 @@ Danh sách User
                       <tr class="bg-dark">
                         <th>ID</th>
                         <th>Tên User</th>
+                        <th>Avatar</th>
                         <th>Email</th>
                         <th>Trạng thái</th>
                         <th>Vai trò</th>
@@ -58,6 +59,11 @@ Danh sách User
                       <tr>
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
+                        <td>
+                          @if (!empty($user->image))
+                              <img src="{{ Illuminate\Support\Facades\Storage::disk($user->disk)->url($user->image) }}" width="100px">   
+                          @endif
+                        </td>
                         <td>{{$user->email}}</td>
                         <td><span class="text-success">Chấp thuận</span></td>
                         <td>{{$user->role}}</span></td>

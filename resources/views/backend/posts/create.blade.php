@@ -45,12 +45,17 @@ Tạo Blog
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
-                          <label>Status</label>
-                          <input type="text" name="status" value="{{ old('status') }}" class="form-control @error('status') is-invalid @enderror " placeholder="Enter..." >
-                          @error('status')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                          @enderror
+                        <div class="form-group" >
+                          <label for="exampleInputFile">Hình nền</label>
+                          <div class="input-group">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" name="image">
+                              <label class="custom-file-label" for="emxampleInputFile">Chọn Ảnh</label>
+                            </div>
+                            <div class="input-group-append">
+                              <span class="input-group-text">Upload</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                       <!-- /.card-body -->

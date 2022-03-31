@@ -43,6 +43,12 @@
                   Dashboard
                   </p>
               </a>
+              <a href="{{route('backend.storage') }}" class="nav-link @if (request()->is('backend/storage')) active @endif ">
+                <i class="nav-icon far fa-folder"></i>
+                <p>
+                Storage
+                </p>
+            </a>
               </li>
             <li class="nav-header">Quản lý chung</li>
             <li class="nav-item @if (request()->routeIs('backend.categories.*')) menu-open @endif">
@@ -104,12 +110,12 @@
                 </p>
               </a>
               <ul class="nav nav-treeview">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                   <a href="{{route('backend.users.create') }}" class="nav-link @if (request()->routeIs('backend.users.create')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Tạo mới user</p>
                   </a>
-                </li>
+                </li> --}}
                 <li class="nav-item">
                   <a href="{{route('backend.users.index') }}" class="nav-link @if (request()->routeIs('backend.users.index')) active @endif">
                     <i class="far fa-circle nav-icon"></i>
