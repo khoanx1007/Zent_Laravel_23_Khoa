@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 @section('title')
-Dashboard
+Thư viện ảnh
 @endsection
 @section('content-header')
       <div class="container-fluid">
@@ -34,9 +34,27 @@ Dashboard
                 </h3>
               </div><!-- /.card-header -->
               <div class="card-body">  
-                <div class="tab-content p-0">
+                <div class="tab-content p-0" style="width:100%;display:flex;flex-wrap:wrap;">
                   @foreach ($files as $file )
-                      <img width="200px" height="200px" src="{{ Illuminate\Support\Facades\Storage::disk()->url($file) }}" style="position: relative;">
+                        <div class="card-header w-25 text-center">
+                          <img class="imgstorage" width="250px" height="250px" src="{{ Illuminate\Support\Facades\Storage::disk()->url($file) }}">
+                          <div class="card-footer d-flex flex-wrap justify-content-center">
+                            <form method="POST" action="{{ route('backend.storage.download',$file) }}">
+                              @csrf
+                              <input type="hidden" name="_medthod" value="download">  
+                              <input type="hidden" name="file" value="{{ $file }}">                          
+                              <button  class="btn btn-success"><i class="fas fa-download"></i></button>  
+                            </form>
+                            &nbsp; &nbsp;
+                            <form method="POST" action="{{ route('backend.storage.destroy') }}">
+                              @csrf
+                              <input type="hidden" name="file" value="{{ $file }}">
+                              <button  class="btn btn-danger"><i class="fas fa-trash"></i></button>  
+                            </form> 
+                              
+                            
+                          </div>
+                        </div>  
                   @endforeach
                 </div>          
               </div><!-- /.card-body -->

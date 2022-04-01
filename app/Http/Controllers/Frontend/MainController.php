@@ -16,7 +16,7 @@ class MainController extends Controller
     {
         $posts=Post::get();
         return view('frontend.main.index')->with([
-            'posts'=>$posts
+            'posts'=>$posts,
         ]);
     }
 

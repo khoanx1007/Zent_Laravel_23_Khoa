@@ -67,7 +67,7 @@ Danh sách Blog
                         </td>
                         <td>
                           @if (!empty($post->image))
-                              <img src="{{ Illuminate\Support\Facades\Storage::disk($post->disk)->url($post->image) }}" width="100px">
+                              <img src="{{ $post->my_image }}" width="100px">
                             
                           @endif
                         </td>
@@ -80,7 +80,7 @@ Danh sách Blog
                           </td>
                         {{-- <td>{{$post->user->name}}</td> --}}
                         <td>{{$post->created_at}}</td>
-                        <td>
+                        <td class="d-flex flex-wrap">
                           <a href="{{route('backend.posts.show',$post->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                           
                           @can('update-post',$post)

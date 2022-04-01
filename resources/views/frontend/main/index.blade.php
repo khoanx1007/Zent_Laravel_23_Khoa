@@ -8,13 +8,13 @@
 			<div class="col-lg-6">
 				@foreach ($posts as $post)
 					<div class="card border-0 mb-4 box-shadow h-xl-300">              
-						<div style="background-image: url(frontend/assets/img/demo/1.jpg); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>               
+						<div style="background-image: url({{ $post->my_image }}); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>               
 						<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
 							<h2 class="h4 font-weight-bold">
 							<a class="text-dark" href="./article.html">{{$post->title}}</a>
 							</h2>
 							<p class="card-text">
-								Researchers have found an effective target in the brain for electrical stimulation to improve mood in people suffering from depression.
+								{{$post->content}}
 							</p>
 							<div>
 								<small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
@@ -28,13 +28,13 @@
 				<div class="flex-md-row mb-4 box-shadow h-xl-300">
 					@foreach ($posts2 as $post2 )		
 							<div class="mb-3 d-flex align-items-center">
-								<img height="80" src="frontend/assets/img/demo/blog4.jpg">
+								<img height="100" width="120" src="{{ $post2->my_image }}">
 								<div class="pl-3">
 									<h2 class="mb-2 h6 font-weight-bold">
 									<a class="text-dark" href="./article.html">{{ $post2->title }}</a>
 									</h2>
 									<div class="card-text text-muted small">
-										Jake Bittle in LOVE/HATE
+										{{$post->content}}
 									</div>
 									<small class="text-muted">Dec 12 &middot; 5 min read</small>
 								</div>

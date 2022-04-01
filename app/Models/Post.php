@@ -5,22 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage; 
 
 class Post extends Model
 {
     use HasFactory;
+    public  $table='posts';
     protected $fillable = [
         'title',
         'content',
         'slug',
-        'user_created_id'
+        'user_created_id',
+        'category_id',
+        'status'
     ];
-    protected $statusArr = [
-        0 => 'Private',
-        1 => 'Public'
-    ];
+    public $timestamps=true;
+    const CREATED_AT = 'created_at';
+    const UPDATED_AT = 'updated_at';
+    const STATUS_HIDE = 0;
+    const STATUS_SHOW = 1;
     public function getStatusTextAttribute(){
-        return $this->statusArr[$this->status];
+        if($this->status == self::STATUS_SHOW){
+            $name = 'Public';
+        }
+        else{
+            $name = 'Draft';
+        }
+        return $name;
+    }
+    public function getMyImageAttribute(){
+        $url = Storage::disk($this->disk)->url($this->image);
+        return $url;
     }
     public function setTitleAttribute($title){
         $this->attributes['title'] = $title;

@@ -61,13 +61,13 @@ Danh sách User
                         <td>{{$user->name}}</td>
                         <td>
                           @if (!empty($user->image))
-                              <img src="{{ Illuminate\Support\Facades\Storage::disk($user->disk)->url($user->image) }}" width="100px">   
+                              <img src="{{ $user->my_image }}" width="100px">   
                           @endif
                         </td>
                         <td>{{$user->email}}</td>
                         <td><span class="text-success">Chấp thuận</span></td>
                         <td>{{$user->role}}</span></td>
-                        <td>
+                        <td class="d-flex flex-wrap">
                           <a href="{{route('backend.users.show',$user->id) }}"  class="btn btn-secondary"><i class="fas fa-eye"></i></a>
                           <a href="{{route('backend.users.edit',$user->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                           <form method="POST" action="{{route('backend.users.destroy',$user->id) }}">

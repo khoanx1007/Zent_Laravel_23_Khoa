@@ -61,7 +61,7 @@ Danh sách danh mục
                           </td>
                           <td>{{$category->content}}</td>
                           <td>{{$category->created_at}}</td>
-                          <td>
+                          <td class="d-flex flex-wrap">
                             <a href="{{route('backend.categories.edit',$category->id) }}"  class="btn btn-primary"><i class="fas fa-pen"></i></a>
                             <form method="POST" action="{{route('backend.categories.destroy',$category->id) }}">
                               @csrf

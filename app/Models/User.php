@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Permissions\HasPermissionsTrait;
+use Illuminate\Support\Facades\Storage; 
 class User extends Authenticatable
 {
     use SoftDeletes;
@@ -44,6 +45,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getMyImageAttribute(){
+        $url = Storage::disk($this->disk)->url($this->image);
+        return $url;
+    }
     public function userInfo(){
         return $this->hasOne(UserInfo::class);
     }
@@ -51,9 +56,7 @@ class User extends Authenticatable
         return $this->hasMany(Post::class,'id');
     }
     public function roles() {
-
         return $this->belongsToMany(Role::class,'users_roles');
-
     }
     public function permissions() {
 
