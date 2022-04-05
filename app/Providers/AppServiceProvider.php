@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Menu;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,14 +29,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $menu = ['Phone','Laptop'];
-        View::share('menu',$menu);
-        Paginator::useBootstrap();
+        // $menu = ['Phone','Laptop'];
+        // View::share('menu',$menu);
+        // Paginator::useBootstrap();
         $categories = Category::all();
         View::share('categories',$categories);
-        $posts = Post::paginate(1);
+        $posts = Post::paginate(6);
         View::share('posts',$posts);
-        $posts2 = Post::paginate(3);
-        View::share('posts2',$posts2);
+        // $menus = Cache::remember('menus',60*60*60,function(){
+        //     return Menu::get();
+        // });
+        $menus = Menu::get();
+        View::share('menus',$menus);
+        Paginator::useBootstrap();
     }
 }

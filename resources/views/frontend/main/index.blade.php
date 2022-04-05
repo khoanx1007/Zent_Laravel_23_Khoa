@@ -1,114 +1,123 @@
-@extends('frontend.layouts.client');
+@extends('frontend.layouts.client')
 @section('content')
-		<div class="container">
-		<h1 class="secondfont font-weight-bold">Recent Post</h1>
-	</div>
-	<div class="container pt-4 pb-4">
-		<div class="row">
-			<div class="col-lg-6">
-				@foreach ($posts as $post)
-					<div class="card border-0 mb-4 box-shadow h-xl-300">              
-						<div style="background-image: url({{ $post->my_image }}); height: 150px;    background-size: cover;    background-repeat: no-repeat;"></div>               
-						<div class="card-body px-0 pb-0 d-flex flex-column align-items-start">
-							<h2 class="h4 font-weight-bold">
-							<a class="text-dark" href="./article.html">{{$post->title}}</a>
-							</h2>
-							<p class="card-text">
-								{{$post->content}}
-							</p>
-							<div>
-								<small class="d-block"><a class="text-muted" href="./author.html">Favid Rick</a></small>
-								<small class="text-muted">Dec 12 &middot; 5 min read</small>
+<div class="blog pt-5">
+	<div class="container">
+		<div class="row d-flex flex-row-reverse">
+			<div class="col-xl-9 col-lg-9 col-12">
+				@foreach ($posts as $post )
+					<div class="bar-info pb-3"> 
+						<div class="row ">
+							<div class="cate-top bg-white news">
+								<div class="cate-top_img">
+									<img class="product-img" src="{{ $post->my_image }}">
+									<div>
+										@foreach($post->tags as $tag)
+                              				<div class="tag-label badge p-1 badge-secondary">{{ $tag->name }}</div>
+                            			@endforeach	
+									</div>
+								</div>
+								<div class="cate-des text-dark">
+									<h4 class="font-weight-bold text-rated">{{ $post->title }}</h4>
+									<h6 class="font-weight-bolder text-secondary pt-2 pb-2 ">
+										<span class="bytime"><i class="far fa-calendar"></i> {{ $post->created_at }}</span>
+										<span class="bytime"><i class="far fa-user"></i> {{ $post->user->name }}</span>
+									</h6>
+									<p>{{ $post->description }} </p>
+									<div class="buy-shop2 mt-4">
+											<a href="blog-detail.html">Read More</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>  
+				@endforeach 
+				<div class="d-flex justify-content-center">
+					{{$posts->links()}}
+				</div>        
+			</div>
+			
+			<div class="col-xl-3 col-lg-3 col-md-12 col-12">
+				<div class="leftcon">
+					<div class="sidebar-1 pb-3">
+						<h5 class="sidebar-tit">CUSTOM MENU</h5>
+						<ul class="sidebar-text">
+							<li><a href="#">Search Terms</a></li>
+							<li><a href="#">Advanced Search</a></li>
+							<li><a href="#">Helps &amp; Faqs</a></li>
+							<li><a href="#">Store Location</a></li>
+							<li><a href="#">Orders &amp; Returns</a></li>
+							<li><a href="#">Deliveries</a></li>
+							<li><a href="#">Refund &amp; Returns</a></li>
+						</ul>
+					</div>
+					<div class="sidebar-2 pb-5">
+						<img src="/frontend/img/banner-shop.jpg" class="w-100">
+					</div>
+					</div><div class="sidebar-2 pb-3">
+						<h5 class="sidebar-tit">RECENT</h5>
+						<div class="topgame d-flex flex-column">
+							<div class="cate-top bg-white">
+								<div class="cate-product_img">
+									<img class="product-img" src="/frontend/img/poster1.jpg">
+								</div>
+								<div class="cate-product_text text-dark">
+									<h6 class="font-weight-bold text-rated">God of War 4 GOTY</h6>
+									<div class="star-icon mt-2">
+									  <label for="rating1" class="fa fa-star"></label>
+									  <label for="rating2" class="fa fa-star"></label>
+									  <label for="rating3" class="fa fa-star"></label>
+									  <label for="rating4" class="fa fa-star"></label>
+									  <label for="rating5" class="fa fa-star"></label>
+									</div>
+									<span class="font-weight-bolder">$60.00</span>
+								</div>
+							</div>
+							<div class="cate-top bg-white">
+								<div class="cate-product_img">
+									<img class="product-img" src="/frontend/img/poster4.jpg">
+								</div>
+								<div class="cate-product_text text-dark">
+									<h6 class="font-weight-bold text-rated">The Last of Us Part 2</h6>
+									<div class="star-icon mt-2">
+									  <label for="rating1" class="fa fa-star"></label>
+									  <label for="rating2" class="fa fa-star"></label>
+									  <label for="rating3" class="fa fa-star"></label>
+									  <label for="rating4" class="fa fa-star"></label>
+									  <label for="rating5" class="fa fa-star"></label>
+									</div>
+									<span class="font-weight-bolder">$60.00</span>
+								</div>
+							</div>
+							<div class="cate-top bg-white ">
+								<div class="cate-product_img">
+									<img class="product-img" src="/frontend/img/poster3.jpg">
+								</div>
+								<div class="cate-product_text text-dark">
+									<h6 class="font-weight-bold text-rated">Sekiro: Shadow Die Twice</h6>
+									<div class="star-icon mt-2">
+									  <label for="rating1" class="fa fa-star"></label>
+									  <label for="rating2" class="fa fa-star"></label>
+									  <label for="rating3" class="fa fa-star"></label>
+									  <label for="rating4" class="fa fa-star"></label>
+									  <label for="rating5" class="fa fa-star"></label>
+									</div>
+									<span class="font-weight-bolder">$60.00</span>
+								</div>
 							</div>
 						</div>
 					</div>
-				@endforeach
-			</div>
-			<div class="col-lg-6">
-				<div class="flex-md-row mb-4 box-shadow h-xl-300">
-					@foreach ($posts2 as $post2 )		
-							<div class="mb-3 d-flex align-items-center">
-								<img height="100" width="120" src="{{ $post2->my_image }}">
-								<div class="pl-3">
-									<h2 class="mb-2 h6 font-weight-bold">
-									<a class="text-dark" href="./article.html">{{ $post2->title }}</a>
-									</h2>
-									<div class="card-text text-muted small">
-										{{$post->content}}
-									</div>
-									<small class="text-muted">Dec 12 &middot; 5 min read</small>
-								</div>
-							</div>										
-					@endforeach
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div class="row justify-content-between">
-			<div class="col-md-8">
-				<h5 class="font-weight-bold spanborder"><span>All Stories</span></h5>
-				<div class="mb-3 d-flex justify-content-between">
-					<div class="pr-3">
-						<h2 class="mb-1 h4 font-weight-bold">
-						<a class="text-dark" href="./article.html">East Antarctica's glaciers are stirring</a>
-						</h2>
-						<p>
-							Nasa says it has detected the first signs of significant melting in a swathe of glaciers in East Antarctica.
-						</p>
-						<div class="card-text text-muted small">
-							Jake Bittle in SCIENCE
-						</div>
-						<small class="text-muted">Dec 12 &middot; 5 min read</small>
+					<div class="sidebar-2 pb-3 pt-3">
+						<h5 class="sidebar-tit">TAGS</h5>
+						<ul class="sidebar-text3 d-flex flex-wrap">
+							<li><a href="#">#GOW</a></li>
+							<li><a href="#">#GOTY</a></li>
+							<li><a href="#">#Best</a></li>
+							<li><a href="#">#ProVip</a></li>
+							<li><a href="#">#Lửa Chùa</a></li>
+						</ul>
 					</div>
-					<img height="150" src="frontend/assets/img/demo/1.jpg">
-				</div>
-			</div>
-			<div class="col-md-4 pl-4">
-				<h5 class="font-weight-bold spanborder"><span>Popular</span></h5>
-				<ol class="list-featured">
-					<li>
-					<span>
-					<h6 class="font-weight-bold">
-					<a href="./article.html" class="text-dark">Did Supernovae Kill Off Large Ocean Animals?</a>
-					</h6>
-					<p class="text-muted">
-						Jake Bittle in SCIENCE
-					</p>
-					</span>
-					</li>
-					<li>
-					<span>
-					<h6 class="font-weight-bold">
-					<a href="./article.html" class="text-dark">Humans Reversing Climate Clock: 50 Million Years</a>
-					</h6>
-					<p class="text-muted">
-						Jake Bittle in SCIENCE
-					</p>
-					</span>
-					</li>
-					<li>
-					<span>
-					<h6 class="font-weight-bold">
-					<a href="./article.html" class="text-dark">Unprecedented Views of the Birth of Planets</a>
-					</h6>
-					<p class="text-muted">
-						Jake Bittle in SCIENCE
-					</p>
-					</span>
-					</li>
-					<li>
-					<span>
-					<h6 class="font-weight-bold">
-					<a href="./article.html" class="text-dark">Effective New Target for Mood-Boosting Brain Stimulation Found</a>
-					</h6>
-					<p class="text-muted">
-						Jake Bittle in SCIENCE
-					</p>
-					</span>
-					</li>
-				</ol>
 			</div>
 		</div>
 	</div>
+</div>
 @endsection

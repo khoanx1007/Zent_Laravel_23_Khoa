@@ -56,6 +56,7 @@ class CategoryController extends Controller
             'name' => $data['name'],
             'content'=> $data['content'],
         ]);
+        $request->session()->flash('success','Tạo danh mục thành công');
         return redirect()->route('backend.categories.index');
     }
 
@@ -97,17 +98,20 @@ class CategoryController extends Controller
         $category->name = $data['name'];
         $category->content = $data['content'];
         $category->save();
+        $request->session()->flash('success','Chỉnh sửa danh mục thành công');
         return redirect()->route('backend.categories.index');
     }
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         Category::destroy($id);
+        $request->session()->flash('success','Xoá danh mục thành công');
         return redirect()->route('backend.categories.index');
     }
-    public function restore($id)
+    public function restore(Request $request,$id)
     {
         $category=Category::withTrashed()->find($id);
         $category->restore();
+        $request->session()->flash('success','Khôi phục danh mục thành công');
         return redirect()->route('backend.categories.index2');
     }
 

@@ -23,19 +23,29 @@ Tạo Blog
                           @enderror
                         </div>
                         <div class="form-group">
+                          <label>Mô tả</label>
+                          <input type="text" name="description" value="{{ old('description') }}" class="form-control @error('description') is-invalid @enderror " placeholder="Enter..." >
+                          @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                          @enderror
+                        </div>
+                        <div class="form-group">
                           <label>Nội dung</label>
-                          <textarea id="editor" name="content" class="form-control @error('content') is-invalid @enderror"></textarea>
+                          <textarea id="editor" name="content"class="form-control @error('content') is-invalid @enderror">{{ old('content') }}"</textarea>
                           @error('content')
                             <div class="alert alert-danger">{{ $message }}</div>
                           @enderror
                         </div>
                         <div class="form-group" >
                               <label>Tags</label>
-                              <select multiple="" class="form-control" name="tags[]">
+                              <select multiple="" class="form-control @error('tags') is-invalid @enderror" name="tags[]">
                                 @foreach ($tags as $item)
                                 <option value="{{$item->id}}">{{$item->name}}</option>
                                 @endforeach
                               </select>
+                              @error('tags')
+                              <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
                         </div>  
                         <div class="form-group" >
                             <label>Danh mục</label>

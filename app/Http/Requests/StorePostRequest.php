@@ -26,7 +26,7 @@ class StorePostRequest extends FormRequest
         return [    
             'title' => 'required|unique:posts|min:20|max:255',
             'content' => 'required',
-            'tag' => 'required',
+            'tags' => 'required',
             // 'status' => 'required|digits:'
         ];
     }
@@ -44,7 +44,8 @@ class StorePostRequest extends FormRequest
         return[
             'status'=>'Tình trạng',
             'title'=>'Tiêu đề',
-            'content'=>'Nội dung'
+            'content'=>'Nội dung',
+            'tags' => 'Nhãn dán'
         ];
     }
 }

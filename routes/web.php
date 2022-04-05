@@ -34,6 +34,7 @@ Route::prefix('backend')
         'roles' => RoleController::class,
         // 'posts' => PostController::class,
         'users' => UserController::class,
+        'menus' => MenuController::class,
         'categories' => CategoryController::class,
     ]); 
     Route::get('posts/{post}/edit', 'PostController@edit')

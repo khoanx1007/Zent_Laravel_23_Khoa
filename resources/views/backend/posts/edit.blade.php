@@ -14,13 +14,20 @@ Chỉnh sửa Blog
                 <div class="card-body">
                   <div class="form-group">
                     <label>Tên bài viết</label>
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1" placeholder="Enter..." value="@error('title'){{ old('title') }} @else{{ $post->title }}  @enderror" >
+                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" id="exampleInputEmail1" placeholder="Enter..." value="@error('title'){{ old('title') }} @else{{ $post->title }}@enderror" >
                     @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
                   <div class="form-group">
-                    <label>Content</label>
+                    <label>Mô tả</label>
+                    <input type="text" name="description" value="@error('description'){{ old('description') }} @else{{ $post->description }}@enderror" class="form-control @error('description') is-invalid @enderror " placeholder="Enter..." >
+                    @error('description')
+                      <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                  </div>
+                  <div class="form-group">
+                    <label>Nội dung</label>
                     <textarea id="editor" class="form-control @error('content') is-invalid @enderror" name='content' value="">{{ $post->content }}</textarea>
                     @error('content')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -55,9 +62,9 @@ Chỉnh sửa Blog
                           @endforeach
                         </select>
                   </div>  
-                  <div class="form-group" >
+                  <div class="form-group col-12" >
                     <label for="exampleInputFile">Hình nền</label>
-                    <p><img src="{{ Illuminate\Support\Facades\Storage::disk($post->disk)->url($post->image) }}" width="100px"></p>
+                    <p><img src="{{ $post->my_image }}" width="100px"></p>
                     <div class="input-group">
 
                       <div class="custom-file">

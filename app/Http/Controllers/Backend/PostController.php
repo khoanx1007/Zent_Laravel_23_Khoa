@@ -11,6 +11,7 @@ use App\Http\Requests\StorePostRequest;
 // use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdatePostRequest;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -99,7 +100,7 @@ class PostController extends Controller
             // }
             $tags = $request->get('tags');
             $category = $request->get('category');
-            $data = $request->only(['title','content']);
+            $data = $request->only(['title','content','description']);
             $post = new Post();
             if($request->hasFile('image')){
                 $disk='public';
@@ -110,11 +111,13 @@ class PostController extends Controller
             $post->title = $data['title'];
             $post->category_id = $category;
             $post->content = $data['content'];
+            $post->description = $data['description'];
             $post->status = '1';
             $post->save(); 
             // $user = User::find(1);
             // $user->posts()->save($post);
-            $post->tags()->attach($tags);       
+            $post->tags()->attach($tags);      
+            $request->session()->flash('success','Tạo bài viết thành công'); 
             return redirect()->route('backend.posts.index');
     }
 
@@ -138,28 +141,28 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         //$post = Post::find($id);
         // if ($request->user()->cannot('create',Post::class)){
         //     abort(403);
         // }
-        $validator = Validator::make($request->all(),[
-            'title' => 'required|min:20|max:255',
-             'content' => 'required'
-        ],
-        [
-           'title.required' => 'Phần tiêu đề không được để trống',
-           'title.min' => 'Phần tiêu đề cần ít nhất 20 kí tự ',
-           'content.required' => 'Phần nội dung không được để trống'  
-        ]
-        );
-        if ($validator->fails()){
-            return redirect()->back()
-            ->withErrors($validator)
-            ->withInput();
-        }
-        $data = $request->only(['title','content']);
+        // $validator = Validator::make($request->all(),[
+        //     'title' => 'required|min:20|max:255',
+        //      'content' => 'required'
+        // ],
+        // [
+        //    'title.required' => 'Phần tiêu đề không được để trống',
+        //    'title.min' => 'Phần tiêu đề cần ít nhất 20 kí tự ',
+        //    'content.required' => 'Phần nội dung không được để trống'  
+        // ]
+        // );
+        // if ($validator->fails()){
+        //     return redirect()->back()
+        //     ->withErrors($validator)
+        //     ->withInput();
+        // }
+        $data = $request->only(['title','content','description']);
         $tags = $request->get('tags');
         if($request->hasFile('image')){
             $disk='public';
@@ -170,14 +173,17 @@ class PostController extends Controller
         $category_id = $request->get('category');
         $post->title = $data['title'];
         $post->content = $data['content'];
+        $post->description = $data['description'];
         $post->tags()->sync($tags);
         $post->category_id = $category_id;
         $post->save();
+        $request->session()->flash('success','Chỉnh sửa bài bài viết thành công'); 
         return redirect()->route('backend.posts.index');
     }
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
         Post::where('id',$id)->delete();
+        $request->session()->flash('success','Xoá bài viết thành công'); 
         return redirect()->route('backend.posts.index');
     }
 
