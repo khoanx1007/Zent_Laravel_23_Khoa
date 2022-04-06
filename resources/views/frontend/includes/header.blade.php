@@ -1,6 +1,5 @@
-<!--------------------------------------
-NAVBAR
---------------------------------------->
+@section('style')
+@endsection
 <div id="helloworld" class="mb-3">
 	<div class="container">
 		<div class="row">
@@ -97,14 +96,14 @@ NAVBAR
 					</ul> 
 				</nav>
 			</div>
-			<div class="col-xl-2 col-lg-2 calling-box text-right mt-3">
-				<ul class="ml-auto d-flex align-items-center">
+			<div class="col-xl-3 col-lg-2 calling-box text-right mt-3">
+				<ul class="ml-auto d-flex align-items-center float-right">
 					@guest
 						<li class="nav-item">
-							<a class="nav-link text-cyan font-weight-bold" href="{{ route('auth.login') }}">Login</a>
+							<a class="nav-link text-cyan font-weight-bold" href="{{ route('auth.login') }}">Đăng nhập</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-success font-weight-bold" href="{{ route('auth.register') }}">Register</a>
+							<a class="nav-link text-success font-weight-bold" href="{{ route('auth.register') }}">Đăng ký</a>
 						</li>
 						@else
 							<li class="avatar">

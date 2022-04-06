@@ -3,10 +3,12 @@
 Tạo Menu
 @endsection
 @section('content')
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-12">
-                  <div class="card card-dark">
+<div class="container-fluid dashboard-content">
+  <div class="row">
+      <div class="col-xl-12">
+          <div class="row">
+              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="card card-dark">
                     <div class="card-header">
                       <h1 class="card-title">Tạo Menu mới</h1>
                     </div>   
@@ -31,7 +33,8 @@ Tạo Menu
                       </div>
                     </form>
                   </div>
-                </div>
               </div>
-            </div>
+      </div>
+  </div>
+</div>
 @endsection

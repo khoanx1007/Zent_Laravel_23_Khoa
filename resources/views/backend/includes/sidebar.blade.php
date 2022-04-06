@@ -1,185 +1,123 @@
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-      <!-- Brand Logo -->
-      <a href="{{route('backend.dashboard')}}" class="brand-link">
-        <img src="/backend/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">LARAVEL 23</span>
-      </a>
-
-      <!-- Sidebar -->
-      <div class="sidebar">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-          <div class="image">
-            <img src="{{ auth()->user()->my_image }}" class="img-circle elevation-2" alt="User Image">
+<div class="nav-left-sidebar sidebar-dark">
+  <div class="menu-list">
+      <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="d-xl-none d-lg-none" href="{{ route('backend.dashboard') }}">Dashboard</a>
+          <button class="navbar-toggler" class="nav-link @if (request()->is('backend/dashboard')) active @endif">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav flex-column">
+                  <li class="nav-divider">
+                      Menu
+                  </li>
+                  <li class="nav-item ">
+                      <a class="nav-link @if (request()->is('backend/dashboard')) active @endif" href="{{ route('backend.dashboard') }}" >
+                          <i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
+                  </li>
+                  <li class="nav-item ">
+                      <a class="nav-link @if (request()->is('backend/storage')) active @endif" href="{{ route('backend.storage') }}" >
+                          <i class="fas fa-folder-open"></i>Storage</a>
+                  </li>
+                  <li class="nav-divider" style="font-family: Arial;">
+                      Quản lý hệ thống
+                    <li class="nav-item " style="font-family: Arial;">
+                        <a class="nav-link  @if (request()->routeIs('backend.menus.*')) active @endif" href="" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fas fa-columns"></i> Quản lí Menu </a>
+                            <div id="submenu-1" class="collapse submenu @if (request()->RouteIs('backend.menus.*')) show @endif">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link @if (request()->routeIs('backend.menus.create')) active @endif d-flex align-items-center" href="{{ Route('backend.menus.create') }}">
+                                            <i class="nav-icon fas fa-pencil-alt"></i>
+                                            <span>Tạo Menu</span> 
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link @if (request()->routeIs('backend.menus.index')) active @endif d-flex align-items-center" href="{{ Route('backend.menus.index') }}">
+                                            <i class="fas fa-clipboard-list"></i>
+                                            <span>Danh sách Menu</span> 
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        
+                    </li>
+                    <li class="nav-item " style="font-family: Arial;">
+                        <a class="nav-link @if (request()->routeIs('backend.categories.*')) active @endif" href="" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-columns"></i> Quản lí Danh mục </a>
+                        <div id="submenu-2" class="collapse submenu @if (request()->routeIs('backend.categories.*')) show @endif" >
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link @if (request()->routeIs('backend.categories.create')) active @endif d-flex align-items-center" href="{{ Route('backend.categories.index') }}">
+                                        <i class="nav-icon fas fa-pencil-alt"></i>
+                                        <span>Tạo danh mục</span> 
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @if (request()->routeIs('backend.categories.index')) active @endif d-flex align-items-center" href="{{ Route('backend.categories.index') }}">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <span>Danh sách danh mục</span> 
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item " style="font-family: Arial;">
+                        <a class="nav-link @if (request()->RouteIs('backend.posts.*')) active @endif" href="" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-columns"></i> Quản lí Blog </a>
+                        <div id="submenu-3" class="collapse submenu @if (request()->RouteIs('backend.posts.*')) show @endif" >
+                            <ul class="nav flex-column">
+                                <li class="nav-item ">
+                                    <a class="nav-link @if (request()->routeIs('backend.posts.create')) active @endif d-flex align-items-center" href="{{ Route('backend.posts.create') }}">
+                                        <i class="nav-icon fas fa-pencil-alt"></i>
+                                        <span>Tạo Blog</span> 
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link @if (request()->routeIs('backend.posts.index')) active @endif d-flex align-items-center" href="{{ Route('backend.posts.index') }}">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <span>Danh sách Blog</span> 
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                  </li>
+                  <li class="nav-divider" style="font-family: Arial;">
+                      Quản lý thành viên         
+                    <li class="nav-item " style="font-family: Arial;">
+                        <a class="nav-link @if (request()->RouteIs('backend.users.*')) active @endif" href="" data-toggle="collapse" aria-expanded="false" data-target="#submenu-4" aria-controls="submenu-4"><i class="fas fa-columns"></i> Quản lí Người dùng </a>
+                        <div id="submenu-4" class="collapse submenu @if (request()->RouteIs('backend.users.*')) show @endif" >
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link @if (request()->routeIs('backend.users.index')) active @endif d-flex align-items-center" href="{{ Route('backend.users.index') }}">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <span>Danh sách người dùng</span> 
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item " style="font-family: Arial;">
+                        <a class="nav-link @if (request()->RouteIs('backend.roles.*')) active @endif" href="" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-columns"></i> Quản lí Role </a>
+                        <div id="submenu-5" class="collapse submenu @if (request()->RouteIs('backend.roles.*')) show @endif" >
+                            <ul class="nav flex-column">
+                                <li class="nav-item ">
+                                    <a class="nav-link d-flex align-items-center" href="{{ Route('backend.users.create') }}">
+                                        <i class="nav-icon fas fa-pencil-alt"></i>
+                                        <span>Tạo Role</span> 
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" href="{{ Route('backend.users.index') }}">
+                                        <i class="fas fa-clipboard-list"></i>
+                                        <span>Danh sách Role</span> 
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                    </li> 
+                  </li>           
+              </ul>
           </div>
-          <div class="info">
-            <a href="#" class="d-block">
-              {{ auth()->user()->name }}
-            </a>
-          </div>
-        </div>
-
-        <!-- SidebarSearch Form -->
-        <div class="form-inline">
-          <div class="input-group" data-widget="sidebar-search">
-            <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-sidebar">
-                <i class="fas fa-search fa-fw"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Sidebar Menu -->
-        <nav class="mt-2">
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
-              <li class="nav-item">
-              <a href="{{route('backend.dashboard') }}" class="nav-link @if (request()->is('backend/dashboard')) active @endif ">
-                  <i class="nav-icon far fa-calendar-alt"></i>
-                  <p>
-                  Dashboard
-                  </p>
-              </a>
-              
-              </li>
-              <li class="nav-item">
-                <a href="{{route('backend.storage') }}" class="nav-link @if (request()->is('backend/storage')) active @endif ">
-                  <i class="nav-icon far fa-folder"></i>
-                  <p>
-                  Storage
-                  </p>
-                </a>
-              </li>
-            <li class="nav-header">Quản lý chung</li>
-              <li class="nav-item @if (request()->routeIs('backend.categories.*')) menu-open @endif">
-                <a href="#2" class="nav-link @if (request()->routeIs('backend.categories.*')) active @endif">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Quản lý danh mục
-                    <i class="fas fa-angle-left right"></i>
-
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{route('backend.categories.create') }}" class="nav-link @if (request()->routeIs('backend.categories.create')) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Tạo mới danh mục</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{route('backend.categories.index') }}" class="nav-link @if (request()->routeIs(['backend.categories.index','backend.categories.edit'])) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Danh sách danh mục</p>
-                    </a>
-                  </li>
-                </ul>
-              </li> 
-              <li class="nav-item @if (request()->routeIs('backend.posts.*')) menu-open @endif">
-                <a href="#2" class="nav-link @if (request()->routeIs('backend.posts.*')) active @endif">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Quản lý Blog
-                    <i class="fas fa-angle-left right"></i>
-
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{route('backend.posts.create') }}" class="nav-link @if (request()->routeIs('backend.posts.create')) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Tạo mới Blog</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{route('backend.posts.index') }}" class="nav-link @if (request()->routeIs(['backend.posts.index','backend.posts.edit'])) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Danh sách Blog</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </li>
-            <li class="nav-header">Hệ thống</li>
-              <li class="nav-item  @if (request()->routeIs('backend.users.*')) menu-open  @endif">
-                <a href="" class="nav-link @if (request()->routeIs('backend.users.*')) active  @endif">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Quản lý người dùng
-                    <i class="fas fa-angle-left right"></i>
-
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  {{-- <li class="nav-item">
-                    <a href="{{route('backend.users.create') }}" class="nav-link @if (request()->routeIs('backend.users.create')) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Tạo mới user</p>
-                    </a>
-                  </li> --}}
-                  <li class="nav-item">
-                    <a href="{{route('backend.users.index') }}" class="nav-link @if (request()->routeIs(['backend.users.index','backend.users.edit'])) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Danh sách thành viên</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item  @if (request()->routeIs('backend.roles.*')) menu-open  @endif">
-                <a href="" class="nav-link @if (request()->routeIs('backend.roles.*')) active  @endif">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Quản lý Role
-                    <i class="fas fa-angle-left right"></i>
-
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{route('backend.roles.create') }}" class="nav-link @if (request()->routeIs('backend.roles.create')) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Tạo mới Role</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{route('backend.roles.index') }}" class="nav-link @if (request()->routeIs(['backend.roles.index','backend.roles.edit'])) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Danh sách Role</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-              <li class="nav-item  @if (request()->routeIs('backend.menus.*')) menu-open  @endif">
-                <a href="" class="nav-link @if (request()->routeIs('backend.menus.*')) active  @endif">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    Quản lý Menu
-                    <i class="fas fa-angle-left right"></i>
-
-                  </p>
-                </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="{{route('backend.menus.create') }}" class="nav-link @if (request()->routeIs('backend.menus.create')) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Tạo mới Menu</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{route('backend.menus.index') }}" class="nav-link @if (request()->routeIs(['backend.menus.index','backend.menus.edit'])) active @endif">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Danh sách Menu</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </li>
-          </ul>
-        </nav>
-        <!-- /.sidebar-menu -->
-      </div>
-      <!-- /.sidebar -->
-    </aside>
+      </nav>
+  </div>
+</div>
