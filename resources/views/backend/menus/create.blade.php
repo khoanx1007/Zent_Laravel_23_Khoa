@@ -3,18 +3,17 @@
 Tạo Menu
 @endsection
 @section('content')
-<div class="container-fluid dashboard-content">
   <div class="row">
       <div class="col-xl-12">
           <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <div class="card card-dark">
-                    <div class="card-header">
+                  <div class="card-header">
                       <h1 class="card-title">Tạo Menu mới</h1>
-                    </div>   
+                  </div>   
                       <!-- /.card-header -->
                     <!-- form start -->
-                    <form action="{{route('backend.menus.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
+                  <form action="{{route('backend.menus.store') }}" method="post" role="form" enctype="multipart/form-data" autocomplete="off">
                       @csrf
                       <div class="card-body">
                         <div class="form-group">
@@ -28,13 +27,12 @@ Tạo Menu
                       <!-- /.card-body -->
       
                       <div class="card-footer">
-                        <button type="submit" class="btn btn-dark">Tạo</button>
+                        <button type="submit" class="btn btn-success">Tạo</button>
                         <a href="" class="btn btn-default float-right">Huỷ</a>
                       </div>
-                    </form>
-                  </div>
+                  </form>
+                </div>
               </div>
       </div>
   </div>
-</div>
 @endsection

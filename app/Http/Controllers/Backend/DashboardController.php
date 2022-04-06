@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $cache = Cache::put('test',10,10);
+        // $cache = Cache::put('test',10,10);
         // $save = $request->session()->put('name','Khoa');
         return view('backend.dashboard');
     

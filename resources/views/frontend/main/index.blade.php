@@ -12,7 +12,7 @@
 									<img class="product-img" src="{{ $post->my_image }}">
 									<div>
 										@foreach($post->tags as $tag)
-                              				<div class="tag-label badge p-1 badge-secondary">{{ $tag->name }}</div>
+                              				<div class="tag-label badge p-1 badge-warning">{{ $tag->name }}</div>
                             			@endforeach	
 									</div>
 								</div>

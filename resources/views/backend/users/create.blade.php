@@ -44,7 +44,7 @@ Tạo User
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-dark">Tạo mới</button>
+                  <button type="submit" class="btn btn-success">Tạo mới</button>
                 </div>
               </form>
             </div>

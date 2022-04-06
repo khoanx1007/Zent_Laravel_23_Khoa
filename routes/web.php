@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\App;
 */
 Route::get('/',function(){ 
     return view('frontend.main.index');
-    });
+    })->name('main.index');
 Route::prefix('backend')
     ->name('backend.')
     ->middleware(['auth', 'role:admin,admod,writer'])

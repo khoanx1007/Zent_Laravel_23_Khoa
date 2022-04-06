@@ -14,7 +14,12 @@ font-style: normal;
 font-weight: normal;
 src: local('Montserrat-Bold'), url('Montserrat-Bold.ttf') format('ttf');
 }
-
+@font-face {
+    font-family: 'Montserrat Medium';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Montserrat-Medium'), url('Montserrat-Medium.ttf') format('ttf');
+    }
 
 @font-face {
 font-family: 'Montserrat SemiBold';

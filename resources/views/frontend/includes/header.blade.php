@@ -1,5 +1,4 @@
-@section('style')
-@endsection
+	
 <div id="helloworld" class="mb-3">
 	<div class="container">
 		<div class="row">

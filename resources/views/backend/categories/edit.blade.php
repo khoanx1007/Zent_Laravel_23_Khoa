@@ -30,7 +30,7 @@ Chỉnh sửa danh mục
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-dark">Sửa</button>
+                  <button type="submit" class="btn btn-success">Sửa</button>
                   <a href="" class="btn btn-default float-right">Huỷ</a>
                 </div>
               </form>

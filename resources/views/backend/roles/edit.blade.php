@@ -41,7 +41,7 @@ Chỉnh sửa User
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-dark">Chỉnh sửa</button>
+                  <button type="submit" class="btn btn-success">Chỉnh sửa</button>
                 </div>
               </form>
             </div> 

@@ -31,7 +31,7 @@ Tạo Blog
                         </div>
                         <div class="form-group">
                           <label>Nội dung</label>
-                          <textarea id="editor" name="content"class="form-control @error('content') is-invalid @enderror">{{ old('content') }}"</textarea>
+                          <textarea id="editor" name="content"class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
                           @error('content')
                             <div class="alert alert-danger">{{ $message }}</div>
                           @enderror
@@ -60,10 +60,7 @@ Tạo Blog
                           <div class="input-group">
                             <div class="custom-file">
                               <input type="file" class="custom-file-input" name="image">
-                              <label class="custom-file-label" for="emxampleInputFile">Chọn Ảnh</label>
-                            </div>
-                            <div class="input-group-append">
-                              <span class="input-group-text">Upload</span>
+                              <label class="custom-file-label" for="emxampleInputFile">Chọn Ảnh...</label>
                             </div>
                           </div>
                         </div>
@@ -71,7 +68,7 @@ Tạo Blog
                       <!-- /.card-body -->
       
                       <div class="card-footer">
-                        <button type="submit" class="btn btn-dark">Tạo</button>
+                        <button type="submit" class="btn btn-success">Tạo</button>
                         <a href="" class="btn btn-default float-right">Huỷ</a>
                       </div>
                     </form>

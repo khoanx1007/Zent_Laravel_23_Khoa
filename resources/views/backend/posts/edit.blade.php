@@ -33,7 +33,7 @@ Chỉnh sửa Blog
                             <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                   </div>
-                  <div class="form-group col-12" >
+                  <div class="form-group" >
                       <label>Danh mục</label>
                       <select class="form-control" name='category'>
                           @foreach ($categories as $category)
@@ -45,7 +45,7 @@ Chỉnh sửa Blog
                           @endforeach
                       </select>
                   </div>  
-                  <div class="form-group col-12">
+                  <div class="form-group">
                         <label>Tags</label>
                         <select multiple="" class="form-control" name='tags[]'>
                           @foreach ($tags as $item)
@@ -62,9 +62,9 @@ Chỉnh sửa Blog
                           @endforeach
                         </select>
                   </div>  
-                  <div class="form-group col-12" >
+                  <div class="form-group" >
                     <label for="exampleInputFile">Hình nền</label>
-                    <p><img src="{{ $post->my_image }}" width="100px"></p>
+                    <p><img src="{{ $post->my_image }}" width="300px"></p>
                     <div class="input-group">
 
                       <div class="custom-file">
@@ -80,7 +80,7 @@ Chỉnh sửa Blog
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-dark">Sửa</button>
+                  <button type="submit" class="btn btn-success">Sửa</button>
                   <a href="" class="btn btn-default float-right">Huỷ</a>
                 </div>
               </form>
